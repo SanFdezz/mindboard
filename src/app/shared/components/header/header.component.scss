@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cal+Sans&display=swap");
+
+$primary-color:rgb(96, 70, 48);
+$secondary-col-hover: rgb(197, 168, 139);
+$secondary-col-hover-hover:rgb(158, 133, 108);
+@mixin flex($type, $content, $items) {
+  display: flex;
+  flex-direction: $type;
+  justify-content: $content;
+  align-items: $items;
+}
+
+.mindboard {
+  font-family: "Alfa Slab One", serif;
+  font-size: 5vh;
+  font-weight: 400;
+  font-style: normal;
+}
+
+header {
+  background-color: rgb(96, 70, 48);
+  color: $secondary-col-hover;
+  padding: 2em;
+  @include flex(row, space-around, center);
+
+  .userRelated {
+    button {
+      margin: 0.5em;
+      padding: 1em;
+      border-radius: 1em;
+      border: none;
+      background-color: $secondary-col-hover;
+      color: rgb(40, 38, 39);
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+      &:hover{
+        background-color: $secondary-col-hover-hover;
+        cursor: pointer;
+      }
+    }
+  }
+}
