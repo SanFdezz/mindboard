@@ -11,16 +11,16 @@ $secondary-color-hover:rgb(158, 133, 108);
   align-items: $items;
 }
 
-.mindboard {
-  font-family: "Alfa Slab One", serif;
-  font-size: 5vh;
-  font-weight: 400;
-  font-style: normal;
-}
-
-header {
-  background-color: rgb(96, 70, 48);
-  color: $secondary-color;
-  padding: 2em;
-  @include flex(row, space-around, center);
+button {
+  margin: 0.5em;
+  padding: 1em;
+  border-radius: 1em;
+  border: none;
+  background-color: $secondary-color;
+  color: rgb(40, 38, 39);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  &:hover{
+    background-color: $secondary-color-hover;
+    cursor: pointer;
+  }
 }

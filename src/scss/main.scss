@@ -4,16 +4,9 @@ $primary-color:rgb(96, 70, 48);
 $secondary-color: rgb(197, 168, 139);
 $secondary-color-hover:rgb(158, 133, 108);
 
-footer{
+@mixin flex($type, $content, $items) {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  background-color: $primary-color;
-  color: $secondary-color;
-  padding: 2em;
-  a{
-    color: $secondary-color;
-    text-decoration: none;
-    cursor: pointer;
-  }
+  flex-direction: $type;
+  justify-content: $content;
+  align-items: $items;
 }

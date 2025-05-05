@@ -2,7 +2,7 @@ import {
   canActivate,
   redirectLoggedInTo,
   redirectUnauthorizedTo,
-} from '@angular/fire/compat/auth-guard';
+} from '@angular/fire/auth-guard';
 import { Routes } from '@angular/router';
 
 // guards de firebase
@@ -17,20 +17,21 @@ export const routes: Routes = [
     ...canActivate(redirectLoggedToHome),
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full',
-  },
-  {
     path: 'home',
     loadComponent: () =>
       import('./pages/home/home.component').then((m) => m.HomeComponent),
     ...canActivate(redirectUnauthorizedToStart),
   },
   {
-    path: 'board',
+    path: 'workspace',
     loadComponent: () =>
-      import('./pages/board/board.component').then((m) => m.BoardComponent),
+      import('./pages/workspace/workspace.component').then((m) => m.WorkspaceComponent),
+    ...canActivate(redirectUnauthorizedToStart)
+  },
+  {
+    path: '',
+    redirectTo: 'start',
+    pathMatch: 'full',
   },
   {
     path: '**',
