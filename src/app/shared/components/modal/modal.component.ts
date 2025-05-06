@@ -9,10 +9,11 @@ import { CommonModule } from '@angular/common';
 })
 export class ModalComponent {
   @Output() cerrar = new EventEmitter<void>();
-  @Output() guardar = new EventEmitter<string>();
+  @Output() guardar = new EventEmitter<string[]>();
 
-  onGuardar(valor: string) {
-    this.guardar.emit(valor);
+  onGuardar(text: string, color:string) {
+    const data:string[] = [text,color];
+    this.guardar.emit(data);
   }
 }
 

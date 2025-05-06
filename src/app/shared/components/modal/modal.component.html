@@ -2,8 +2,14 @@
   <div class="modal-content">
     <h2>Escribe tu texto</h2>
     <input #inputTexto type="text" placeholder="Escribe aquí" />
-
-    <button (click)="onGuardar(inputTexto.value)">Guardar</button>
+    <select name="colors" id="colors" #colorSelect>
+      <option value="blue">Azul</option>
+      <option value="pink">Rosa</option>
+      <option value="yellow">Amarillo</option>
+      <option value="white">Blanco</option>
+      <option value="black">Negro</option>
+    </select>
+    <button (click)="onGuardar(inputTexto.value,colorSelect.value)">Guardar</button>
     <button (click)="cerrar.emit()">Cancelar</button>
   </div>
 </div>

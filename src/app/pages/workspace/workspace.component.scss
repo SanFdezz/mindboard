@@ -6,6 +6,8 @@ $secondary-color-hover: rgb(158, 133, 108);
 $postit-one: rgba(82, 223, 209, 0.866);
 $postit-two: rgba(209, 223, 82, 0.866);
 $postit-three: rgba(223, 82, 207, 0.866);
+$postit-four: rgba(245, 238, 244, 0.866);
+$postit-five: rgba(36, 35, 36, 0.866);
 $title-color: rgb(39, 30, 23);
 $box-color: rgba(96, 70, 48, 0.755);
 
@@ -49,17 +51,26 @@ $box-color: rgba(96, 70, 48, 0.755);
   background-color: $postit-three;
 }
 
+.white{
+  padding: 1em;
+  background-color: $postit-four;
+}
+
+.black{
+  padding: 1em;
+  background-color: $postit-five;
+  color:white;
+}
+
 .arrastrable {
   border-radius: 1em;
   width: 200px;
   height: 200px;
-  color: rgb(52, 51, 50);
   cursor:grab;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  background-color: rgba(223, 96, 179, 0.886);
   border-radius: 4px;
   margin-right: 25px;
   position: relative;
@@ -89,4 +100,7 @@ $box-color: rgba(96, 70, 48, 0.755);
   background-size: cover;
   background-position: center;
   position: relative;
+  color: rgb(52, 51, 50);
 }
+
+

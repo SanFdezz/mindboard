@@ -24,9 +24,9 @@ export class WorkspaceComponent implements OnInit {
     this.showModal = false;
   }
 
-  createElement(text: string) {
+  createElement(data: string[]) {
     this.closeModal();
-    this.contentService.saveNewElement(text,'pink')
+    this.contentService.saveNewElement(data[0],data[1]);
   }
 
   ngOnInit(): void {

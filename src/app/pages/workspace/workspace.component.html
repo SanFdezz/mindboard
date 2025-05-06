@@ -1,6 +1,6 @@
 <div class="board">
   @for (element of elements(); track element.date) {
-  <div class="arrastrable" cdkDrag cdkDragBoundary=".board">
+  <div class="arrastrable {{element.color}}" cdkDrag cdkDragBoundary=".board">
     {{ element.text }}
   </div>
   }
