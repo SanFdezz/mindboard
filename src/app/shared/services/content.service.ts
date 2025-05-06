@@ -16,17 +16,18 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root',
 })
-
 export class ContentService {
+  auth = getAuth();
+  currentUser = this.auth.currentUser;
+  currentUid = this.currentUser!.uid;
   db = getDatabase();
   contentListRef = ref(this.db, 'postits');
-  auth = inject(AuthService);
   elements: WritableSignal<Content[]> = signal([]);
 
   saveNewElement(text: string, color: string): void {
     const date = new Date().toString();
     const element: Content = {
-      user:this.auth.getStoredUsername(),
+      uid:this.currentUid,
       text: text,
       date: date,
       position: null,
@@ -46,10 +47,14 @@ export class ContentService {
         const allElements: Content[] = [];
         snapshot.forEach((childSnapshot) => {
           const element = childSnapshot.val();
-          allElements.push(element);
+          if (element.uid == this.currentUid) {
+            allElements.push(element);
+            console.log('elemento cargado')
+          }
         });
 
         this.elements.set(allElements);
+        console.log('Listo!')
         return;
       }
       this.elements.set([]);
