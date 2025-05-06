@@ -1,1 +1,16 @@
-<board/>
+<div class="board">
+  @for (element of elements; track element.id) {
+  <div class="arrastrable" cdkDrag cdkDragBoundary=".board">
+    {{ element.content }}
+  </div>
+  }
+</div>
+
+<div class="select">
+  <div class="title">¡Añade elementos a tu tablero!</div>
+  <button class="blue" (click)="openModal()">Añadir caja</button>
+  @if (showModal) {
+  <app-modal (cerrar)="closeModal()" (guardar)="crearElemento($event)">
+  </app-modal>
+  }
+</div>

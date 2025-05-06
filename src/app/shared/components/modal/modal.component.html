@@ -1,0 +1,9 @@
+<div class="modal-overlay">
+  <div class="modal-content">
+    <h2>Escribe tu texto</h2>
+    <input #inputTexto type="text" placeholder="Escribe aquí" />
+
+    <button (click)="onGuardar(inputTexto.value)">Guardar</button>
+    <button (click)="cerrar.emit()">Cancelar</button>
+  </div>
+</div>

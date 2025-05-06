@@ -1,2 +1,92 @@
 @import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cal+Sans&display=swap");
 
+$primary-color: rgb(96, 70, 48);
+$secondary-color: rgb(197, 168, 139);
+$secondary-color-hover: rgb(158, 133, 108);
+$postit-one: rgba(82, 223, 209, 0.866);
+$postit-two: rgba(209, 223, 82, 0.866);
+$postit-three: rgba(223, 82, 207, 0.866);
+$title-color: rgb(39, 30, 23);
+$box-color: rgba(96, 70, 48, 0.755);
+
+@mixin flex($type, $content, $items) {
+  display: flex;
+  flex-direction: $type;
+  justify-content: $content;
+  align-items: $items;
+}
+
+.select{
+  background-color: $box-color;
+  padding: 2em;
+  button{
+    border: none;
+  }
+}
+
+.title {
+  font-family: "Alfa Slab One", serif;
+  font-weight: 400;
+  font-size: 3vh;
+  color: $title-color;
+}
+
+.postit {
+  @include flex(column, center, center);
+}
+
+.blue{
+  padding: 1em;
+  background-color: $postit-one;
+}
+.yellow {
+  padding: 1em;
+
+  background-color: $postit-two;
+}
+.pink {
+  padding: 1em;
+  background-color: $postit-three;
+}
+
+.arrastrable {
+  border-radius: 1em;
+  width: 200px;
+  height: 200px;
+  color: rgb(52, 51, 50);
+  cursor:grab;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: rgba(223, 96, 179, 0.886);
+  border-radius: 4px;
+  margin-right: 25px;
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 10px;
+  transition: box-shadow 200ms cubic-bezier(0, 0, 0.2, 1);
+  box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2),
+              0 2px 2px 0 rgba(0, 0, 0, 0.14),
+              0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.arrastrable:active {
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
+              0 8px 10px 1px rgba(0, 0, 0, 0.14),
+              0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.board {
+  width: auto;
+  margin: 3em;
+  height: 40em;
+  max-width: 100%;
+  border-radius: 1em;
+  border: solid rgb(89, 68, 50) 1em;
+  background-image: url('images/fondoCorcho.jpg');
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
