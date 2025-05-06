@@ -1,7 +1,7 @@
 <div class="board">
-  @for (element of elements; track element.id) {
+  @for (element of elements(); track element.date) {
   <div class="arrastrable" cdkDrag cdkDragBoundary=".board">
-    {{ element.content }}
+    {{ element.text }}
   </div>
   }
 </div>
@@ -10,7 +10,7 @@
   <div class="title">¡Añade elementos a tu tablero!</div>
   <button class="blue" (click)="openModal()">Añadir caja</button>
   @if (showModal) {
-  <app-modal (cerrar)="closeModal()" (guardar)="crearElemento($event)">
+  <app-modal (cerrar)="closeModal()" (guardar)="createElement($event)">
   </app-modal>
   }
 </div>

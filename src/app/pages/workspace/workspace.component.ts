@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { ModalComponent } from "../../shared/components/modal/modal.component";
 import {CdkDrag} from '@angular/cdk/drag-drop';
+import { ContentService } from '../../shared/services/content.service';
 
 @Component({
   selector: 'app-workspace',
@@ -8,11 +9,12 @@ import {CdkDrag} from '@angular/cdk/drag-drop';
   templateUrl: './workspace.component.html',
   styleUrl: './workspace.component.scss'
 })
-export class WorkspaceComponent {
+export class WorkspaceComponent implements OnInit {
 
-  elements: { id: number; content: string }[] = [];
+  contentService = inject(ContentService);
   counter = 0;
   showModal = false;
+  elements = this.contentService.elements;
 
   openModal() {
     this.showModal = true;
@@ -22,14 +24,16 @@ export class WorkspaceComponent {
     this.showModal = false;
   }
 
-  crearElemento(valor: string) {
+  createElement(text: string) {
     this.closeModal();
-    this.elements.push({
-      id: this.counter++,
-      content: valor,
-    });
+    this.contentService.saveNewElement(text,'pink')
   }
 
-
+  ngOnInit(): void {
+    this.contentService.loadMessages();
+  }
 
 }
+
+
+

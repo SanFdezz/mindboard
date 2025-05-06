@@ -1,4 +1,4 @@
-import { Injectable, signal, WritableSignal } from '@angular/core';
+import { inject, Injectable, signal, WritableSignal } from '@angular/core';
 import { getAuth } from '@angular/fire/auth';
 import {
   get,
@@ -11,6 +11,7 @@ import {
   set,
 } from '@angular/fire/database';
 import { Content } from '../../core/interfaces/content';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -18,13 +19,14 @@ import { Content } from '../../core/interfaces/content';
 
 export class ContentService {
   db = getDatabase();
-  contentListRef = ref(this.db, 'messages');
-  user = getAuth();
+  contentListRef = ref(this.db, 'postits');
+  auth = inject(AuthService);
   elements: WritableSignal<Content[]> = signal([]);
 
   saveNewElement(text: string, color: string): void {
     const date = new Date().toString();
     const element: Content = {
+      user:this.auth.getStoredUsername(),
       text: text,
       date: date,
       position: null,
@@ -37,9 +39,9 @@ export class ContentService {
   }
 
   loadMessages(): void {
-    let messagesQuery = query(ref(this.db, 'messages'), orderByChild('date'));
+    let elementsQuery = query(ref(this.db, 'postits'), orderByChild('date'));
 
-    get(messagesQuery).then((snapshot) => {
+    get(elementsQuery).then((snapshot) => {
       if (snapshot.exists()) {
         const allElements: Content[] = [];
         snapshot.forEach((childSnapshot) => {
