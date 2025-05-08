@@ -26,11 +26,11 @@ export class WorkspaceComponent implements OnInit {
 
   createElement(data: string[]) {
     this.closeModal();
-    this.contentService.saveNewElement(data[0],data[1]);
+    this.contentService.saveNewElement(data[0],data[1],'');
   }
 
   ngOnInit(): void {
-    this.contentService.loadMessages();
+    this.contentService.loadContents('');
   }
 
 }

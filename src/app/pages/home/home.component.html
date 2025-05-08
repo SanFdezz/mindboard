@@ -1,7 +1,20 @@
 <div class="board">
   <div>
     <div class="title yellow">BienveniX a MindBoard {{ username }}</div>
-    <div></div>
-    <button [routerLink]="['/workspace']">Personaliza tu tablero</button>
+  </div>
+  <div>
+    <div>
+      ¡CREA UN TABLERO!
+      <div>Nombra el tablero:</div>
+      <input type="text" name="title" #boardTitle>
+      <button (click)="createBoard(boardTitle.value)">Crear</button>
+    </div>
+  </div>
+  <div class="boards">
+    @for (board of boards(); track board.date) {
+      <div class="preview">
+        Tablero '{{ board.title }}'
+      </div>
+      }
   </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 import { RouterLink } from '@angular/router';
+import { BoardsService } from '../../shared/services/boards.service';
 
 @Component({
   selector: 'app-home',
@@ -11,4 +12,15 @@ import { RouterLink } from '@angular/router';
 export class HomeComponent {
   authService = inject(AuthService);
   username = this.authService.getStoredUsername();
+  boardService = inject(BoardsService);
+  boards = this.boardService.boards;
+
+  ngOnInit(): void {
+    this.boardService.loadBoards();
+  }
+
+  createBoard(title:string){
+    this.boardService.saveNewBoard(title);
+  }
+
 }

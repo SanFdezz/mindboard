@@ -1,5 +1,3 @@
-import { User } from "firebase/auth";
-
 export interface Content {
   uid:string|undefined,
   text:string,

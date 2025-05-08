@@ -1,4 +1,4 @@
-import { inject, Injectable, signal, WritableSignal } from '@angular/core';
+import { Injectable, signal, WritableSignal } from '@angular/core';
 import { getAuth } from '@angular/fire/auth';
 import {
   get,
@@ -11,20 +11,20 @@ import {
   set,
 } from '@angular/fire/database';
 import { Content } from '../../core/interfaces/content';
-import { AuthService } from './auth.service';
+
 
 @Injectable({
   providedIn: 'root',
 })
+
 export class ContentService {
   auth = getAuth();
   currentUser = this.auth.currentUser;
   currentUid = this.currentUser!.uid;
   db = getDatabase();
-  contentListRef = ref(this.db, 'postits');
   elements: WritableSignal<Content[]> = signal([]);
 
-  saveNewElement(text: string, color: string): void {
+  saveNewElement(text: string, color: string, board:string): void {
     const date = new Date().toString();
     const element: Content = {
       uid:this.currentUid,
@@ -34,13 +34,14 @@ export class ContentService {
       color: color,
     };
 
-    const newContentRef = push(this.contentListRef);
+    const boardPostitsRef = ref(this.db,`tableros/${board}/postits`)
+    const newContentRef = push(boardPostitsRef);
     set(newContentRef, element);
     this.elements.update((_elements) => [..._elements, element]);
   }
 
-  loadMessages(): void {
-    let elementsQuery = query(ref(this.db, 'postits'), orderByChild('date'));
+  loadContents(board:string): void {
+    let elementsQuery = query(ref(this.db,`tableros/${board}/postits`), orderByChild('date'));
 
     get(elementsQuery).then((snapshot) => {
       if (snapshot.exists()) {
@@ -49,12 +50,9 @@ export class ContentService {
           const element = childSnapshot.val();
           if (element.uid == this.currentUid) {
             allElements.push(element);
-            console.log('elemento cargado')
           }
         });
-
         this.elements.set(allElements);
-        console.log('Listo!')
         return;
       }
       this.elements.set([]);
