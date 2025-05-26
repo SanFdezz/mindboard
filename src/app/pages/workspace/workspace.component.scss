@@ -14,7 +14,7 @@ $box-color: rgba(96, 70, 48, 0.755);
 @mixin flex($type, $content, $items) {
   display: flex;
   flex-direction: $type;
-  justify-content: $content;
+  justify-content:$content;
   align-items: $items;
 }
 
@@ -101,6 +101,61 @@ $box-color: rgba(96, 70, 48, 0.755);
   background-position: center;
   position: relative;
   color: rgb(52, 51, 50);
+}
+
+button {
+  font-weight: bolder;
+  margin: 0.5em;
+  padding: 1em;
+  border-radius: 1em;
+  border: none;
+  background-color: $secondary-color;
+  color: rgb(40, 38, 39);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  &:hover{
+    background-color: $secondary-color-hover;
+    cursor: pointer;
+  }
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0.5em; // Espacio interno para que nada toque los bordes
+  box-sizing: border-box;
+}
+
+.deleteBtn {
+  position: absolute;
+  top: 0.2em;
+  left: 0.2em;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  z-index: 2;
+
+  img {
+    height: 1.8em;
+    width: 1.8em;
+  }
+
+  &:hover {
+    background: none;
+  }
+}
+
+.text {
+  height: 100%;
+  width: 100%;
+  padding: 0.5em 0.2em 0.2em 0.2em; // espacio alrededor del texto
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  word-wrap: break-word;
+  font-size: 1em;
+  z-index: 1;
 }
 
 

@@ -23,7 +23,7 @@ export const routes: Routes = [
     ...canActivate(redirectUnauthorizedToStart),
   },
   {
-    path: 'workspace',
+    path: 'workspace/:id',
     loadComponent: () =>
       import('./pages/workspace/workspace.component').then((m) => m.WorkspaceComponent),
     ...canActivate(redirectUnauthorizedToStart)

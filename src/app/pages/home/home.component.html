@@ -2,19 +2,27 @@
   <div>
     <div class="title yellow">BienveniX a MindBoard {{ username }}</div>
   </div>
-  <div>
+
+  <div class="blue">
     <div>
-      ¡CREA UN TABLERO!
+      <div class="title">¡CREA UN TABLERO!</div>
       <div>Nombra el tablero:</div>
-      <input type="text" name="title" #boardTitle>
+      <input type="text" name="title" #boardTitle> <br>
       <button (click)="createBoard(boardTitle.value)">Crear</button>
     </div>
   </div>
-  <div class="boards">
-    @for (board of boards(); track board.date) {
-      <div class="preview">
-        Tablero '{{ board.title }}'
-      </div>
-      }
+
+  <div class="boardsContainer">
+    <div class="title blue">
+      TUS TABLEROS
+    </div>
+    <div class="boards">
+      @for (board of boards(); track board.date) {
+        <div class="pink">
+          <div>Tablero '{{ board.title }}'</div>
+          <button [routerLink]="['/workspace/',board.boardID]">Personaliza tu tablero</button>
+        </div>
+        }
+    </div>
   </div>
 </div>

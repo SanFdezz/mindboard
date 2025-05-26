@@ -4,4 +4,5 @@ export interface Content {
   date:string|null,
   position:string|null,
   color:string,
+  key:string,
 }

@@ -14,24 +14,34 @@ $box-color: rgba(96, 70, 48, 0.755);
   flex-direction: $type;
   justify-content: $content;
   align-items: $items;
+  text-align: center;
 }
 
 .board {
   background-image: url("images/fondoCorcho.jpg");
   background-size: cover;
   background-position: center;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+  @include flex(column, space-around,center);
   padding-left: 6em;
   padding-right: 6em;
   height: 100%;
+
   button {
-    background-color: $postit-one;
+    margin: 1em;
+    border-radius: 1em;
     border: none;
     padding: 1em;
-    padding-top: 2em;
-    padding-bottom: 2em;
+  }
+
+  .boardsContainer{
+    padding: 2em;
+    @include flex(column, center, center);
+    gap: 1em;
+  }
+
+  .boards{
+    @include flex(row, center, center);
+    gap: 2em;
   }
 
   .title {
@@ -51,13 +61,13 @@ $box-color: rgba(96, 70, 48, 0.755);
   }
   .yellow {
     padding: 1em;
-
     background-color: $postit-two;
   }
   .pink {
     padding: 1em;
     background-color: $postit-three;
   }
+
 
 }
 

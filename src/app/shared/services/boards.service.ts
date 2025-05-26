@@ -20,7 +20,7 @@ export class BoardsService {
   currentUser = this.auth.currentUser;
   currentUid = this.currentUser!.uid;
   db = getDatabase();
-  boardListRef = ref(this.db, 'tableros');
+  boardListRef = ref(this.db, 'boards');
   boards: WritableSignal<Board[]> = signal([]);
 
   saveNewBoard(title: string): void {
@@ -38,7 +38,7 @@ export class BoardsService {
   }
 
   loadBoards(): void {
-    let elementsQuery = query(ref(this.db, 'tableros'), orderByChild('date'));
+    let elementsQuery = query(ref(this.db, 'boards'), orderByChild('date'));
 
     get(elementsQuery).then((snapshot) => {
       if (snapshot.exists()) {
