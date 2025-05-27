@@ -10,24 +10,25 @@ import {
   remove,
   set,
 } from '@angular/fire/database';
-import { Content } from '../../core/interfaces/content';
+import { Postit } from '../../core/interfaces/content';
 
 @Injectable({
   providedIn: 'root',
 })
-export class ContentService {
+export class PostitService {
   auth = getAuth();
   currentUser = this.auth.currentUser;
   currentUid = this.currentUser!.uid;
   db = getDatabase();
-  elements: WritableSignal<Content[]> = signal([]);
+  elements: WritableSignal<Postit[]> = signal([]);
 
-  saveNewElement(text: string, color: string, board: string): void {
+  saveNewPostit(text: string, color: string, board: string): void {
     const date = new Date().toString();
     const boardPostitsRef = ref(this.db, `boards/${board}/postits`);
-    const newContentRef = push(boardPostitsRef);
-    const key = newContentRef.key!;
-    const element: Content = {
+    const newPostitRef = push(boardPostitsRef);
+    const key = newPostitRef.key!;
+    const element: Postit = {
+      type:'postit',
       uid: this.currentUid,
       text: text,
       date: date,
@@ -36,11 +37,11 @@ export class ContentService {
       key: key,
     };
 
-    set(newContentRef, element);
+    set(newPostitRef, element);
     this.elements.update((_elements) => [..._elements, element]);
   }
 
-  loadContents(board: string): void {
+  loadPostits(board: string): void {
     let elementsQuery = query(
       ref(this.db, `boards/${board}/postits`),
       orderByChild('date')
@@ -48,7 +49,7 @@ export class ContentService {
 
     get(elementsQuery).then((snapshot) => {
       if (snapshot.exists()) {
-        const allElements: Content[] = [];
+        const allElements: Postit[] = [];
         snapshot.forEach((childSnapshot) => {
           const element = childSnapshot.val();
           if (element.uid == this.currentUid) {
@@ -63,13 +64,7 @@ export class ContentService {
     });
   }
 
-  deleteMessages(): void {
-    remove(ref(this.db, '/'))
-      .then(() => console.log('eliminada'))
-      .catch((error) => console.error(error));
-  }
-
-  deleteMessage(board: string, postit: string): void {
+  deletePostit(board: string, postit: string): void {
     remove(ref(this.db, `boards/${board}/postits/${postit}`));
   }
 }

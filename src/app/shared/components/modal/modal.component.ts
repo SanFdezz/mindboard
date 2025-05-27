@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,12 +9,13 @@ import { CommonModule } from '@angular/common';
   styleUrl: './modal.component.scss',
 })
 export class ModalComponent {
-  @Output() cerrar = new EventEmitter<void>();
-  @Output() guardar = new EventEmitter<string[]>();
+  @Input() type!: string;
+  @Output() close = new EventEmitter<void>();
+  @Output() save = new EventEmitter<string[]>();
 
   onGuardar(text: string, color:string) {
     const data:string[] = [text,color];
-    this.guardar.emit(data);
+    this.save.emit(data);
   }
 }
 

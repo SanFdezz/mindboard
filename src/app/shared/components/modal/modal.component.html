@@ -1,4 +1,5 @@
 <div>
+  @if(type == 'postit'){
   <div class="modal">
     <h3>¡Un nuevo post-it!</h3>
     <input #inputTexto type="text" placeholder="Escribe aquí" />
@@ -15,6 +16,24 @@
     <button (click)="onGuardar(inputTexto.value, colorSelect.value)">
       Guardar
     </button>
-    <button (click)="cerrar.emit()">Cancelar</button>
+    <button (click)="close.emit()">Cancelar</button>
   </div>
+  } @if(type == 'list'){
+  <div class="modal">
+    <h3>¡Una nueva lista!</h3>
+    <input #inputTexto type="text" placeholder="Escribe aquí" />
+    <label>
+      Selecciona el tipo de papel:
+      <select name="colors" id="colors" #colorSelect>
+        <option value="white">Blanco</option>
+        <option value="black">Negro</option>
+        <option value="beige">Beige</option>
+      </select>
+    </label>
+    <button (click)="onGuardar(inputTexto.value, colorSelect.value)">
+      Guardar
+    </button>
+    <button (click)="close.emit()">Cancelar</button>
+  </div>
+  }
 </div>

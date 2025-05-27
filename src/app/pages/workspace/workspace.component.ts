@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CdkDrag } from '@angular/cdk/drag-drop';
-import { ContentService } from '../../shared/services/content.service';
+import { PostitService } from '../../shared/services/postit.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CalendarComponent } from '../../shared/components/calendar/calendar.component';
 import { ButtonModule } from '@coreui/angular';
@@ -13,7 +13,8 @@ import {
   OffcanvasTitleDirective,
   OffcanvasToggleDirective,
 } from '@coreui/angular';
-import { ModalComponent } from "../../shared/components/modal/modal.component";
+import { ModalComponent } from '../../shared/components/modal/modal.component';
+import { ListsService } from '../../shared/services/lists.service';
 
 @Component({
   selector: 'app-workspace',
@@ -29,38 +30,60 @@ import { ModalComponent } from "../../shared/components/modal/modal.component";
     OffcanvasTitleDirective,
     ButtonCloseDirective,
     OffcanvasBodyComponent,
-    ModalComponent
-],
+    ModalComponent,
+  ],
   templateUrl: './workspace.component.html',
   styleUrl: './workspace.component.scss',
 })
 export class WorkspaceComponent implements OnInit {
-  contentService = inject(ContentService);
+  postitService = inject(PostitService);
+  listService = inject(ListsService);
+  // postitService = inject(PostitService);
   counter = 0;
-  showModal = false;
-  elements = this.contentService.elements;
+  showModal:string|null = null;
+  elements = this.postitService.elements;
   route = inject(ActivatedRoute);
   boardID = this.route.snapshot.paramMap.get('id')!;
 
-  openModal() {
-    this.showModal = true;
+  openModal(type:string) {
+    this.showModal = type;
   }
 
   closeModal() {
-    this.showModal = false;
+    this.showModal = null;
   }
 
-  createElement(data: string[]) {
+  createElement(data: string[], type: string) {
     this.closeModal();
-    this.contentService.saveNewElement(data[0], data[1], this.boardID);
+    switch (type) {
+      case 'postit':
+        this.postitService.saveNewPostit(data[0], data[1], this.boardID);
+        break;
+      case 'list':
+        // this.listService.saveNewList(data[0], data[1], this.boardID);
+        break;
+      case 'calendar':
+        break;
+    }
   }
 
   ngOnInit(): void {
-    this.contentService.loadContents(this.boardID);
+    this.postitService.loadPostits(this.boardID);
+    this.listService.loadLists(this.boardID);
   }
 
-  delete(key: string): void {
-    this.contentService.deleteMessage(this.boardID, key);
-    this.elements.update((elements) => elements.filter((el) => el.key !== key));
+  delete(key: string, type: string): void {
+    switch (type) {
+      case 'postit':
+        this.postitService.deletePostit(this.boardID, key);
+        break;
+      case 'list':
+        this.listService.deleteList(this.boardID, key);
+        break;
+      case 'calendar':
+        this.postitService.deletePostit(this.boardID, key);
+        break;
+    }
+    this.elements.update((elements) => elements.filter((content) => content.key !== key));
   }
 }

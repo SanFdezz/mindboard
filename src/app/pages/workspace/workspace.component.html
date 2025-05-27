@@ -2,7 +2,7 @@
   @for (element of elements(); track element.date) {
   <div class="arrastrable {{ element.color }}" cdkDrag cdkDragBoundary=".board">
     <div class="content">
-      <button class="deleteBtn" (click)="delete(element.key!)">
+      <button class="deleteBtn" (click)="delete(element.key!, element.type)">
         <img src="assets/images/pin.png" alt="delete" />
       </button>
       <div class="text">
@@ -32,11 +32,24 @@
       ></button>
     </c-offcanvas-header>
     <c-offcanvas-body>
-      <button (click)="openModal()" class="btn">Post-its</button>
-      @if (showModal) {
-      <app-modal (cerrar)="closeModal()" (guardar)="createElement($event)">
+      <button (click)="openModal('postit')" class="btn">Post-its</button>
+      @if (showModal === 'postit') {
+      <app-modal
+        [type]="'postit'"
+        (close)="closeModal()"
+        (save)="createElement($event, 'postit')"
+      >
       </app-modal>
-    }
+      }
+      <button (click)="openModal('list')" class="btn">Listas</button>
+      @if (showModal === 'list') {
+      <app-modal
+        [type]="'list'"
+        (close)="closeModal()"
+        (save)="createElement($event, 'list')"
+      >
+      </app-modal>
+      }
     </c-offcanvas-body>
   </c-offcanvas>
 </div>
