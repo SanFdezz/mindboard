@@ -1,15 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cal+Sans&display=swap");
+@import "@coreui/coreui/scss/coreui";
 
-$primary-color: rgb(96, 70, 48);
-$secondary-color: rgb(197, 168, 139);
-$secondary-color-hover: rgb(158, 133, 108);
-$postit-one: rgba(82, 223, 209, 0.866);
-$postit-two: rgba(209, 223, 82, 0.866);
-$postit-three: rgba(223, 82, 207, 0.866);
-$postit-four: rgba(245, 238, 244, 0.866);
-$postit-five: rgba(36, 35, 36, 0.866);
-$title-color: rgb(39, 30, 23);
-$box-color: rgba(96, 70, 48, 0.755);
+
+
 
 @mixin flex($type, $content, $items) {
   display: flex;
@@ -19,7 +12,7 @@ $box-color: rgba(96, 70, 48, 0.755);
 }
 
 .select{
-  background-color: $box-color;
+  background-color: var(--box-color);
   padding: 2em;
   button{
     border: none;
@@ -30,7 +23,7 @@ $box-color: rgba(96, 70, 48, 0.755);
   font-family: "Alfa Slab One", serif;
   font-weight: 400;
   font-size: 3vh;
-  color: $title-color;
+  color: var(--title-color);
 }
 
 .postit {
@@ -39,26 +32,26 @@ $box-color: rgba(96, 70, 48, 0.755);
 
 .blue{
   padding: 1em;
-  background-color: $postit-one;
+  background-color: var(--postit-one);
 }
 .yellow {
   padding: 1em;
 
-  background-color: $postit-two;
+  background-color: var(--postit-two);
 }
 .pink {
   padding: 1em;
-  background-color: $postit-three;
+  background-color: var(--postit-three);
 }
 
 .white{
   padding: 1em;
-  background-color: $postit-four;
+  background-color: var(--postit-four);
 }
 
 .black{
   padding: 1em;
-  background-color: $postit-five;
+  background-color: var(--postit-five);
   color:white;
 }
 
@@ -103,17 +96,18 @@ $box-color: rgba(96, 70, 48, 0.755);
   color: rgb(52, 51, 50);
 }
 
-button {
+.btn {
   font-weight: bolder;
   margin: 0.5em;
   padding: 1em;
   border-radius: 1em;
   border: none;
-  background-color: $secondary-color;
+  background-color: var(--secondary-color);
   color: rgb(40, 38, 39);
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
   &:hover{
-    background-color: $secondary-color-hover;
+    background-color: var(--secondary-color-hover);
+    color: white;
     cursor: pointer;
   }
 }
@@ -122,11 +116,12 @@ button {
   position: relative;
   width: 100%;
   height: 100%;
-  padding: 0.5em; // Espacio interno para que nada toque los bordes
+  padding: 0.5em;
   box-sizing: border-box;
 }
 
 .deleteBtn {
+  border: none;
   position: absolute;
   top: 0.2em;
   left: 0.2em;
@@ -148,7 +143,7 @@ button {
 .text {
   height: 100%;
   width: 100%;
-  padding: 0.5em 0.2em 0.2em 0.2em; // espacio alrededor del texto
+  padding: 0.5em 0.2em 0.2em 0.2em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -159,3 +154,10 @@ button {
 }
 
 
+.offcanvas{
+  background-color: var(--primary-color);
+  h5{
+    color: var(--secondary-color);
+    font-weight: bold;
+  }
+}

@@ -1,20 +1,36 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { ContentService } from '../../shared/services/content.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CalendarComponent } from '../../shared/components/calendar/calendar.component';
 import { ButtonModule } from '@coreui/angular';
+import {
+  ButtonCloseDirective,
+  ButtonDirective,
+  OffcanvasBodyComponent,
+  OffcanvasComponent,
+  OffcanvasHeaderComponent,
+  OffcanvasTitleDirective,
+  OffcanvasToggleDirective,
+} from '@coreui/angular';
+import { ModalComponent } from "../../shared/components/modal/modal.component";
 
 @Component({
   selector: 'app-workspace',
   imports: [
-    ModalComponent,
     CdkDrag,
     RouterLink,
     CalendarComponent,
     ButtonModule,
-  ],
+    ButtonDirective,
+    OffcanvasToggleDirective,
+    OffcanvasComponent,
+    OffcanvasHeaderComponent,
+    OffcanvasTitleDirective,
+    ButtonCloseDirective,
+    OffcanvasBodyComponent,
+    ModalComponent
+],
   templateUrl: './workspace.component.html',
   styleUrl: './workspace.component.scss',
 })

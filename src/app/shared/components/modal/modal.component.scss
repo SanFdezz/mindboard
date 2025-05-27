@@ -1,0 +1,19 @@
+@mixin flex($type, $content, $items) {
+  display: flex;
+  flex-direction: $type;
+  justify-content: $content;
+  align-items: $items;
+}
+
+.modal{
+  background-color: var(--secondary-color);
+  @include flex(column, space-between, start);
+  padding: 1em;
+  border-radius: 1em;
+  gap: 0.5em;
+  input{
+    height: 8em;
+    border-radius: 1em;
+
+  }
+}

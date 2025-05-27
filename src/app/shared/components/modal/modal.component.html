@@ -1,15 +1,20 @@
-<div class="modal-overlay">
-  <div class="modal-content">
-    <h2>Escribe tu texto</h2>
+<div>
+  <div class="modal">
+    <h3>¡Un nuevo post-it!</h3>
     <input #inputTexto type="text" placeholder="Escribe aquí" />
-    <select name="colors" id="colors" #colorSelect>
-      <option value="blue">Azul</option>
-      <option value="pink">Rosa</option>
-      <option value="yellow">Amarillo</option>
-      <option value="white">Blanco</option>
-      <option value="black">Negro</option>
-    </select>
-    <button (click)="onGuardar(inputTexto.value,colorSelect.value)">Guardar</button>
+    <label>
+      Selecciona el color del post-it:
+      <select name="colors" id="colors" #colorSelect>
+        <option value="blue">Azul</option>
+        <option value="pink">Rosa</option>
+        <option value="yellow">Amarillo</option>
+        <option value="white">Blanco</option>
+        <option value="black">Negro</option>
+      </select>
+    </label>
+    <button (click)="onGuardar(inputTexto.value, colorSelect.value)">
+      Guardar
+    </button>
     <button (click)="cerrar.emit()">Cancelar</button>
   </div>
 </div>
