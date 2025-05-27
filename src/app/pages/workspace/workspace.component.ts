@@ -40,12 +40,13 @@ export class WorkspaceComponent implements OnInit {
   listService = inject(ListsService);
   // postitService = inject(PostitService);
   counter = 0;
-  showModal:string|null = null;
-  elements = this.postitService.elements;
+  showModal: string | null = null;
+  postits = this.postitService.elements;
+  lists = this.listService.elements;
   route = inject(ActivatedRoute);
   boardID = this.route.snapshot.paramMap.get('id')!;
 
-  openModal(type:string) {
+  openModal(type: string) {
     this.showModal = type;
   }
 
@@ -54,13 +55,14 @@ export class WorkspaceComponent implements OnInit {
   }
 
   createElement(data: string[], type: string) {
+    const textList = data[0].split('\n').filter((line) => line.trim() !== '');
     this.closeModal();
     switch (type) {
       case 'postit':
         this.postitService.saveNewPostit(data[0], data[1], this.boardID);
         break;
       case 'list':
-        // this.listService.saveNewList(data[0], data[1], this.boardID);
+        this.listService.saveNewList(textList, data[1], this.boardID);
         break;
       case 'calendar':
         break;
@@ -84,6 +86,11 @@ export class WorkspaceComponent implements OnInit {
         this.postitService.deletePostit(this.boardID, key);
         break;
     }
-    this.elements.update((elements) => elements.filter((content) => content.key !== key));
+    this.postits.update((elements) =>
+      elements.filter((content) => content.key !== key)
+    );
+    this.lists.update((elements) =>
+      elements.filter((content) => content.key !== key)
+    );
   }
 }

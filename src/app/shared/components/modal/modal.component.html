@@ -21,7 +21,8 @@
   } @if(type == 'list'){
   <div class="modal">
     <h3>¡Una nueva lista!</h3>
-    <input #inputTexto type="text" placeholder="Escribe aquí" />
+    <div>¡Recuerda! Cada salto de línea es un nuevo check, tenlo en cuenta.</div>
+    <textarea #inputTexto type="text" placeholder="¡Rellena tu lista!"></textarea>
     <label>
       Selecciona el tipo de papel:
       <select name="colors" id="colors" #colorSelect>

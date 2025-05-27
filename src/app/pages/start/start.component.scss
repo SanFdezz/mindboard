@@ -18,66 +18,65 @@ $box-color: rgba(96, 70, 48, 0.755);
   align-items: $items;
 }
 
-.page{
+.page {
   @include flex(row, center, center);
   margin: 1em;
-  .box{
-     @include flex(column, center, center);
-     border: solid rgb(89, 68, 50) 1em;
-     background-image: url('images/fondoCorcho.jpg');
-     background-size: cover;
-     background-position: center;
-     padding: 5em;
-     width: 75%;
+  .box {
+    @include flex(column, center, center);
+    border: solid rgb(89, 68, 50) 1em;
+    background-image: url("/assets/images/corkboard.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 5em;
+    width: 75%;
 
-     button{
-      background-color:$postit-one;
+    button {
+      background-color: $postit-one;
       border: none;
       padding: 1em;
       padding-top: 2em;
       padding-bottom: 2em;
-     }
+    }
 
-     .organize{
+    .organize {
       @include flex(row, space-around, center);
-     }
+    }
 
-     .title{
+    .title {
       font-family: "Alfa Slab One", serif;
       font-weight: 400;
       font-size: 5vh;
       color: $title-color;
-     }
+    }
 
-     .postit {
+    .postit {
       width: 10em;
       aspect-ratio: 1 / 1;
       padding: 1em;
       @include flex(column, space-around, center);
       box-sizing: border-box;
-      margin:1em;
+      margin: 1em;
       width: 30vh;
     }
 
-     .yellow{
+    .yellow {
       background-color: $postit-two;
-     }
-     .pink{
+    }
+    .pink {
       background-color: $postit-three;
-     }
-     .blue{
+    }
+    .blue {
       background-color: $postit-one;
-     }
+    }
 
-     .white{
+    .white {
       background-color: $postit-four;
-     }
+    }
 
-     .highlighted{
+    .highlighted {
       background-color: $postit-one;
       font-weight: bolder;
       cursor: pointer;
-     }
-
+    }
   }
 }

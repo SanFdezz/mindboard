@@ -18,10 +18,10 @@ $box-color: rgba(96, 70, 48, 0.755);
 }
 
 .board {
-  background-image: url("images/fondoCorcho.jpg");
+  background-image: url("/assets/images/corkboard.jpg");
   background-size: cover;
   background-position: center;
-  @include flex(column, space-around,center);
+  @include flex(column, space-around, center);
   padding-left: 6em;
   padding-right: 6em;
   height: 100%;
@@ -33,13 +33,13 @@ $box-color: rgba(96, 70, 48, 0.755);
     padding: 1em;
   }
 
-  .boardsContainer{
+  .boardsContainer {
     padding: 2em;
     @include flex(column, center, center);
     gap: 1em;
   }
 
-  .boards{
+  .boards {
     @include flex(row, center, center);
     gap: 2em;
   }
@@ -55,7 +55,7 @@ $box-color: rgba(96, 70, 48, 0.755);
     @include flex(column, center, center);
   }
 
-  .blue{
+  .blue {
     padding: 1em;
     background-color: $postit-one;
   }
@@ -67,7 +67,4 @@ $box-color: rgba(96, 70, 48, 0.755);
     padding: 1em;
     background-color: $postit-three;
   }
-
-
 }
-

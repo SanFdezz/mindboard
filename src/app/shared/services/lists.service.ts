@@ -25,7 +25,7 @@ export class ListsService {
 
   saveNewList(text: string[], color: string, board: string): void {
     const date = new Date().toString();
-    const boardListsRef = ref(this.db, `boards/${board}/Lists`);
+    const boardListsRef = ref(this.db, `boards/${board}/lists`);
     const newListRef = push(boardListsRef);
     const key = newListRef.key!;
     const element: List = {
