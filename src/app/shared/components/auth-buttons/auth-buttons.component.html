@@ -1,2 +1,6 @@
-<button (click)="login()">LogIn</button>
-<button (click)="logout()">LogOut</button>
+@if(!auth.user()){
+  <button (click)="login()">LogIn</button>
+}
+@else {
+  <button (click)="logout()">LogOut</button>
+}

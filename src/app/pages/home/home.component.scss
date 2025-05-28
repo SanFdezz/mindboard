@@ -1,13 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cal+Sans&display=swap");
 
-$primary-color: rgb(96, 70, 48);
-$secondary-color: rgb(197, 168, 139);
-$secondary-color-hover: rgb(158, 133, 108);
-$postit-one: rgba(82, 223, 209, 0.866);
-$postit-two: rgba(209, 223, 82, 0.866);
-$postit-three: rgba(223, 82, 207, 0.866);
-$title-color: rgb(39, 30, 23);
-$box-color: rgba(96, 70, 48, 0.755);
+
 
 @mixin flex($type, $content, $items) {
   display: flex;
@@ -48,7 +41,7 @@ $box-color: rgba(96, 70, 48, 0.755);
     font-family: "Alfa Slab One", serif;
     font-weight: 400;
     font-size: 3vh;
-    color: $title-color;
+    color: var(--title-color);
   }
 
   .postit {
@@ -57,14 +50,14 @@ $box-color: rgba(96, 70, 48, 0.755);
 
   .blue {
     padding: 1em;
-    background-color: $postit-one;
+    background-color: var(--postit-one);
   }
   .yellow {
     padding: 1em;
-    background-color: $postit-two;
+    background-color: var(--postit-two);
   }
   .pink {
     padding: 1em;
-    background-color: $postit-three;
+    background-color: var(--postit-three);
   }
 }
