@@ -5,6 +5,7 @@
   flex-direction: $type;
   justify-content: $content;
   align-items: $items;
+  text-align: center
 }
 
 .page {
@@ -20,11 +21,8 @@
     width: 75%;
 
     button {
-      background-color: var(--postit-one);
+      background: none;
       border: none;
-      padding: 1em;
-      padding-top: 2em;
-      padding-bottom: 2em;
     }
 
     .organize {
@@ -42,7 +40,8 @@
       width: 10em;
       aspect-ratio: 1 / 1;
       padding: 1em;
-      @include flex(column, space-around, center);
+      @include flex(column, center, center);
+      gap: 1em;
       box-sizing: border-box;
       margin: 1em;
       width: 30vh;
@@ -63,7 +62,6 @@
     }
 
     .highlighted {
-      background-color: var(--postit-one);
       font-weight: bolder;
       cursor: pointer;
     }
