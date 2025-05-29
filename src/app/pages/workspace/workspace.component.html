@@ -1,12 +1,14 @@
 <div>
-  <div class="fixed-material-button">
-    <button cButton cOffcanvasToggle="OffcanvasStart" class="btn">
-      Abrir caja de materiales
-    </button>
+  <div class="buttons-container">
+    <div>
+      <button cButton cOffcanvasToggle="OffcanvasStart" class="btn">
+        Abrir caja de materiales
+      </button>
+      <button (click)="deleteMode = !deleteMode" class="btn">
+        {{ deleteMode ? "Cancelar" : "Eliminar elementos" }}
+      </button>
+    </div>
     <button [routerLink]="['/home']" class="btn">Volver a Home</button>
-    <button (click)="deleteMode = !deleteMode" class="btn">
-      🗑️ {{ deleteMode ? "Cancelar" : "Eliminar stickers" }}
-    </button>
   </div>
 
   <c-offcanvas placement="start" id="OffcanvasStart" class="offcanvas">
@@ -53,17 +55,15 @@
   <div class="board">
     @for (element of postits(); track element.date) {
     <div
-      class="arrastrable arrastrable-transition {{ element.color }}"
+      class="arrastrable paper-content arrastrable-transition {{
+        element.color
+      }}"
       cdkDrag
       cdkDragBoundary=".board"
+      [class.sticker-deletable]="deleteMode"
+      (click)="deleteMode ? delete(element.key!, element.type) : null"
     >
       <div class="content">
-        <button
-          class="deleteBtn left"
-          (click)="delete(element.key!, element.type)"
-        >
-          <img src="assets/images/pin.png" alt="delete" />
-        </button>
         <div class="text">
           {{ element.text }}
         </div>
@@ -71,17 +71,15 @@
     </div>
     } @for (element of lists(); track element.date) {
     <div
-      class="arrastrable arrastrable-transition {{ element.color }}"
+      class="arrastrable paper-content arrastrable-transition {{
+        element.color
+      }}"
       cdkDrag
       cdkDragBoundary=".board"
+      [class.sticker-deletable]="deleteMode"
+      (click)="deleteMode ? delete(element.key!, element.type) : null"
     >
       <div class="content">
-        <button
-          class="deleteBtn right"
-          (click)="delete(element.key!, element.type)"
-        >
-          <img src="assets/images/pin.png" alt="delete" />
-        </button>
         <div class="text list">
           @for(text of element.text; track $index){
           <label for="checkbox">

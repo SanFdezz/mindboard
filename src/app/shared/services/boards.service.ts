@@ -13,7 +13,7 @@ import {
 import { Board } from '../../core/interfaces/board';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BoardsService {
   auth = getAuth();
@@ -28,9 +28,9 @@ export class BoardsService {
     const newBoardRef = push(this.boardListRef);
     const boardID = newBoardRef.key!;
     const board: Board = {
-      uid:this.currentUid,
-      boardID:boardID,
-      title:title,
+      uid: this.currentUid,
+      boardID: boardID,
+      title: title,
       date: date,
     };
     set(newBoardRef, board);
@@ -57,4 +57,7 @@ export class BoardsService {
     });
   }
 
+  deleteBoard(board: string): void {
+    remove(ref(this.db, `boards/${board}`));
+  }
 }

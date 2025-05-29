@@ -23,4 +23,8 @@ export class HomeComponent {
     this.boardService.saveNewBoard(title);
   }
 
+  deleteBoard(board:string){
+    this.boardService.deleteBoard(board);
+  }
+
 }

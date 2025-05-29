@@ -48,11 +48,6 @@
 }
 
 .arrastrable {
-  border-radius: 1em;
-  min-height: 12em;
-  min-width: 12em;
-  max-height: 30em;
-  max-width: 30em;
   cursor: grab;
   display: inline-flex;
   justify-content: center;
@@ -64,6 +59,13 @@
   z-index: 1;
   box-sizing: border-box;
   padding: 10px;
+}
+
+.paper-content {
+  min-height: 12em;
+  min-width: 12em;
+  max-height: 30em;
+  max-width: 30em;
 }
 
 .arrastrable-transition {
@@ -115,32 +117,6 @@
   box-sizing: border-box;
 }
 
-.deleteBtn {
-  border: none;
-  position: absolute;
-  top: 0.2em;
-  background: none;
-  box-shadow: none;
-  padding: 0;
-  z-index: 2;
-
-  img {
-    height: 1.8em;
-    width: 1.8em;
-  }
-
-  &:hover {
-    background: none;
-  }
-}
-
-.left {
-  left: 0.2em;
-}
-
-.right {
-  right: 0.2em;
-}
 
 .text {
   height: 100%;
@@ -163,9 +139,11 @@
   }
 }
 
-.fixed-material-button {
-  width: 100%;
-  margin-left: 1.5em;
+.buttons-container {
+  padding-left: 1.5em;
+  padding-right: 1.5em;
+  align-self: center;
+  @include flex(row, space-between, center);
 }
 
 .list {

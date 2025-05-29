@@ -22,7 +22,6 @@ import { StickersService } from '../../shared/services/stickers.service';
   imports: [
     CdkDrag,
     RouterLink,
-    CalendarComponent,
     ButtonModule,
     ButtonDirective,
     OffcanvasToggleDirective,
