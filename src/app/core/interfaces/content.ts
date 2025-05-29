@@ -27,3 +27,12 @@ export interface Calendar {
   color:string,
   key:string,
 }
+
+export interface Sticker {
+  type:string,
+  uid:string|undefined,
+  url:string,
+  name:string,
+  position:string|null,
+  key:string,
+}

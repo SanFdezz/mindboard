@@ -1,75 +1,109 @@
 <div>
   <div class="fixed-material-button">
-  <button cButton cOffcanvasToggle="OffcanvasStart" class="btn">
-    Abrir caja de materiales
-  </button>
-  <button [routerLink]="['/home']" class="btn">Volver a Home</button>
-</div>
+    <button cButton cOffcanvasToggle="OffcanvasStart" class="btn">
+      Abrir caja de materiales
+    </button>
+    <button [routerLink]="['/home']" class="btn">Volver a Home</button>
+    <button (click)="deleteMode = !deleteMode" class="btn">
+      🗑️ {{ deleteMode ? "Cancelar" : "Eliminar stickers" }}
+    </button>
+  </div>
 
-<c-offcanvas placement="start" id="OffcanvasStart" class="offcanvas">
-  <c-offcanvas-header>
-    <h5 cOffcanvasTitle>Caja de materiales</h5>
-    <button
-      cButtonClose
-      class="text-reset ms-auto"
-      cOffcanvasToggle="OffcanvasStart"
-      aria-label="Close"
-    ></button>
-  </c-offcanvas-header>
-  <c-offcanvas-body>
-    <button (click)="openModal('postit')" class="btn">Post-its</button>
-    @if (showModal === 'postit') {
-    <app-modal
-      [type]="'postit'"
-      (close)="closeModal()"
-      (save)="createElement($event, 'postit')"
-    >
-    </app-modal>
-    }
-    <button (click)="openModal('list')" class="btn">Listas</button>
-    @if (showModal === 'list') {
-    <app-modal
-      [type]="'list'"
-      (close)="closeModal()"
-      (save)="createElement($event, 'list')"
-    >
-    </app-modal>
-    }
-  </c-offcanvas-body>
-</c-offcanvas>
+  <c-offcanvas placement="start" id="OffcanvasStart" class="offcanvas">
+    <c-offcanvas-header>
+      <h5 cOffcanvasTitle>Caja de materiales</h5>
+      <button
+        cButtonClose
+        class="text-reset ms-auto"
+        cOffcanvasToggle="OffcanvasStart"
+        aria-label="Close"
+      ></button>
+    </c-offcanvas-header>
+    <c-offcanvas-body>
+      <button (click)="openModal('postit')" class="btn">Post-its</button>
+      @if (showModal === 'postit') {
+      <app-modal
+        [type]="'postit'"
+        (close)="closeModal()"
+        (save)="createElement($event, 'postit')"
+      >
+      </app-modal>
+      }
+      <button (click)="openModal('list')" class="btn">Listas</button>
+      @if (showModal === 'list') {
+      <app-modal
+        [type]="'list'"
+        (close)="closeModal()"
+        (save)="createElement($event, 'list')"
+      >
+      </app-modal>
+      }
+      <button (click)="openModal('sticker')" class="btn">Stickers</button>
+      @if (showModal === 'sticker') {
+      <app-modal
+        [type]="'sticker'"
+        (close)="closeModal()"
+        (save)="createElement($event, 'sticker')"
+      >
+      </app-modal>
+      }
+    </c-offcanvas-body>
+  </c-offcanvas>
 
-<div class="board">
-  @for (element of postits(); track element.date) {
-  <div class="arrastrable {{ element.color }}" cdkDrag cdkDragBoundary=".board">
-    <div class="content">
-      <button class="deleteBtn" (click)="delete(element.key!, element.type)">
-        <img src="assets/images/pin.png" alt="delete" />
-      </button>
-      <div class="text">
-        {{ element.text }}
+  <div class="board">
+    @for (element of postits(); track element.date) {
+    <div
+      class="arrastrable arrastrable-transition {{ element.color }}"
+      cdkDrag
+      cdkDragBoundary=".board"
+    >
+      <div class="content">
+        <button
+          class="deleteBtn left"
+          (click)="delete(element.key!, element.type)"
+        >
+          <img src="assets/images/pin.png" alt="delete" />
+        </button>
+        <div class="text">
+          {{ element.text }}
+        </div>
       </div>
     </div>
-  </div>
-  }
-  @for (element of lists(); track element.date) {
-  <div class="arrastrable {{ element.color }}" cdkDrag cdkDragBoundary=".board">
-    <div class="content">
-      <button class="deleteBtn" (click)="delete(element.key!, element.type)">
-        <img src="assets/images/pin.png" alt="delete" />
-      </button>
-      <div class="text list">
-        @for(text of element.text; track $index){
+    } @for (element of lists(); track element.date) {
+    <div
+      class="arrastrable arrastrable-transition {{ element.color }}"
+      cdkDrag
+      cdkDragBoundary=".board"
+    >
+      <div class="content">
+        <button
+          class="deleteBtn right"
+          (click)="delete(element.key!, element.type)"
+        >
+          <img src="assets/images/pin.png" alt="delete" />
+        </button>
+        <div class="text list">
+          @for(text of element.text; track $index){
           <label for="checkbox">
-            <input type="checkbox"> 
-            {{text}}
+            <input type="checkbox" />
+            {{ text }}
           </label>
-        }
+          }
+        </div>
       </div>
     </div>
+    } @for (element of stickers(); track $index) {
+    <div
+      class="arrastrable"
+      cdkDrag
+      cdkDragBoundary=".board"
+      [class.sticker-deletable]="deleteMode"
+      (click)="deleteMode ? delete(element.key!, element.type) : null"
+    >
+      <div class="content">
+        <img src="{{ element.url }}" alt="{{ element.name }}" class="sticker" />
+      </div>
+    </div>
+    }
   </div>
-  }
 </div>
-<app-calendar />
-
-</div>
-

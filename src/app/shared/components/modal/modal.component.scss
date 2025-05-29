@@ -5,15 +5,29 @@
   align-items: $items;
 }
 
-.modal{
+.modal {
   background-color: var(--secondary-color);
   @include flex(column, space-between, start);
   padding: 1em;
   border-radius: 1em;
   gap: 0.5em;
-  input{
+  input {
     height: 8em;
     border-radius: 1em;
-
   }
+}
+
+.sticker {
+  height: 4em;
+  filter: drop-shadow(0 4px 2px rgba(0, 0, 0, 0.4));
+  cursor: pointer;
+}
+
+.select {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1em;
+  background-color: var(--postit-four);
+  border-radius: 1em;
+  padding: 1em;
 }

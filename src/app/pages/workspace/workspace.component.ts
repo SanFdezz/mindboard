@@ -15,6 +15,7 @@ import {
 } from '@coreui/angular';
 import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { ListsService } from '../../shared/services/lists.service';
+import { StickersService } from '../../shared/services/stickers.service';
 
 @Component({
   selector: 'app-workspace',
@@ -38,13 +39,16 @@ import { ListsService } from '../../shared/services/lists.service';
 export class WorkspaceComponent implements OnInit {
   postitService = inject(PostitService);
   listService = inject(ListsService);
-  // postitService = inject(PostitService);
+  stickerService = inject(StickersService);
   counter = 0;
   showModal: string | null = null;
   postits = this.postitService.elements;
   lists = this.listService.elements;
+  stickers = this.stickerService.elements;
   route = inject(ActivatedRoute);
   boardID = this.route.snapshot.paramMap.get('id')!;
+
+  deleteMode:boolean = false;
 
   openModal(type: string) {
     this.showModal = type;
@@ -64,7 +68,8 @@ export class WorkspaceComponent implements OnInit {
       case 'list':
         this.listService.saveNewList(textList, data[1], this.boardID);
         break;
-      case 'calendar':
+      case 'sticker':
+        this.stickerService.saveNewSticker(data[0], data[1], this.boardID);
         break;
     }
   }
@@ -82,14 +87,17 @@ export class WorkspaceComponent implements OnInit {
       case 'list':
         this.listService.deleteList(this.boardID, key);
         break;
-      case 'calendar':
-        this.postitService.deletePostit(this.boardID, key);
+      case 'sticker':
+        this.stickerService.deleteSticker(this.boardID, key);
         break;
     }
     this.postits.update((elements) =>
       elements.filter((content) => content.key !== key)
     );
     this.lists.update((elements) =>
+      elements.filter((content) => content.key !== key)
+    );
+    this.stickers.update((elements) =>
       elements.filter((content) => content.key !== key)
     );
   }

@@ -21,8 +21,14 @@
   } @if(type == 'list'){
   <div class="modal">
     <h3>¡Una nueva lista!</h3>
-    <div>¡Recuerda! Cada salto de línea es un nuevo check, tenlo en cuenta.</div>
-    <textarea #inputTexto type="text" placeholder="¡Rellena tu lista!"></textarea>
+    <div>
+      ¡Recuerda! Cada salto de línea es un nuevo check, tenlo en cuenta.
+    </div>
+    <textarea
+      #inputTexto
+      type="text"
+      placeholder="¡Rellena tu lista!"
+    ></textarea>
     <label>
       Selecciona el tipo de papel:
       <select name="colors" id="colors" #colorSelect>
@@ -34,6 +40,19 @@
     <button (click)="onGuardar(inputTexto.value, colorSelect.value)">
       Guardar
     </button>
+    <button (click)="close.emit()">Cancelar</button>
+  </div>
+  } @if(type == 'sticker'){
+  <div class="modal">
+    <h3>¡Decora tu tablero!</h3>
+    <div>Elige el sticker que desees agregar a tu tablero</div>
+    <div class="select">
+      @for (sticker of stickers; track $index) {
+      <div class="option" (click)="onGuardar(sticker.url,sticker.name)">
+        <img src="{{sticker.url}}" alt="{{sticker.name}}" class="sticker">
+      </div>
+      }
+    </div>
     <button (click)="close.emit()">Cancelar</button>
   </div>
   }

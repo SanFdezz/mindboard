@@ -1,9 +1,9 @@
 <div class="board">
   <div>
-    <div class="title yellow">BienveniX a MindBoard {{ username }}</div>
+    <div class="title yellow postit">BienveniX a MindBoard {{ username }}</div>
   </div>
 
-  <div class="blue">
+  <div class="postit blue">
     <div>
       <div class="title">¡CREA UN TABLERO!</div>
       <div>Nombra el tablero:</div>
@@ -13,12 +13,12 @@
   </div>
 
   <div class="boardsContainer">
-    <div class="title blue">
+    <div class="title postit">
       TUS TABLEROS
     </div>
     <div class="boards">
       @for (board of boards(); track board.date) {
-        <div class="pink">
+        <div class="postit pink">
           <div>Tablero '{{ board.title }}'</div>
           <button [routerLink]="['/workspace/',board.boardID]">Personaliza tu tablero</button>
         </div>

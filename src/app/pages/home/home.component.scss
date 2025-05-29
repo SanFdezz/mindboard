@@ -28,6 +28,7 @@
 
   .boardsContainer {
     padding: 2em;
+    background-color: var(--postit-four);
     @include flex(column, center, center);
     gap: 1em;
   }
@@ -45,19 +46,17 @@
   }
 
   .postit {
+    padding: 2em;
     @include flex(column, center, center);
   }
 
   .blue {
-    padding: 1em;
     background-color: var(--postit-one);
   }
   .yellow {
-    padding: 1em;
     background-color: var(--postit-two);
   }
   .pink {
-    padding: 1em;
     background-color: var(--postit-three);
   }
 }
