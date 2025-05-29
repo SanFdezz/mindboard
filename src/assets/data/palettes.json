@@ -1,0 +1,52 @@
+[
+  {
+    "name": "warm",
+    "colors": [
+      { "fill-hex": "#ED5B58", "font-hex": "000000" },
+      { "fill-hex": "#ED9058", "font-hex": "000000" },
+      { "fill-hex": "#ED7658", "font-hex": "000000" },
+      { "fill-hex": "#ED58A5", "font-hex": "000000" },
+      { "fill-hex": "#EDAA58", "font-hex": "000000" }
+    ]
+  },
+  {
+    "name": "cool",
+    "colors": [
+      { "fill-hex": "#6F58ED", "font-hex": "FFFFFF" },
+      { "fill-hex": "#D158ED", "font-hex": "000000" },
+      { "fill-hex": "#A058ED", "font-hex": "000000" },
+      { "fill-hex": "#5870ED", "font-hex": "000000" },
+      { "fill-hex": "#ED58C7", "font-hex": "000000" }
+    ]
+  },
+  {
+    "name": "blue",
+    "colors": [
+      { "fill-hex": "#58CDED", "font-hex": "000000" },
+      { "fill-hex": "#586EED", "font-hex": "000000" },
+      { "fill-hex": "#589DED", "font-hex": "000000" },
+      { "fill-hex": "#58EDDD", "font-hex": "000000" },
+      { "fill-hex": "#7158ED", "font-hex": "FFFFFF" }
+    ]
+  },
+  {
+    "name": "green",
+    "colors": [
+      { "fill-hex": "#75ED58", "font-hex": "000000" },
+      { "fill-hex": "#58EDA6", "font-hex": "000000" },
+      { "fill-hex": "#58ED73", "font-hex": "000000" },
+      { "fill-hex": "#B3ED58", "font-hex": "000000" },
+      { "fill-hex": "#58EDD9", "font-hex": "000000" }
+    ]
+  },
+    {
+    "name": "orange",
+    "colors": [
+      { "fill-hex": "#EDBD58", "font-hex": "000000" },
+      { "fill-hex": "#EDE158", "font-hex": "000000" },
+      { "fill-hex": "#EDCF58", "font-hex": "000000" },
+      { "fill-hex": "#EDA95B", "font-hex": "000000" },
+      { "fill-hex": "#D7ED58", "font-hex": "000000" }
+    ]
+  }
+]

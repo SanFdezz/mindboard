@@ -11,6 +11,7 @@
 .page {
   @include flex(row, center, center);
   margin: 1em;
+  height: 80%;
   .box {
     @include flex(column, center, center);
     border: solid rgb(89, 68, 50) 1em;
