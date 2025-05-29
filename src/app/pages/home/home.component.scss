@@ -1,7 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cal+Sans&display=swap");
 
-
-
 @mixin flex($type, $content, $items) {
   display: flex;
   flex-direction: $type;
@@ -11,13 +9,31 @@
 }
 
 .board {
-  background-image: url("/assets/images/corkboard.jpg");
-  background-size: cover;
-  background-position: center;
-  @include flex(column, space-around, center);
-  padding-left: 6em;
-  padding-right: 6em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100%;
+
+  .top-part {
+    height: 40%;
+    @include flex(column, center, center);
+  }
+
+  .cards {
+    @include flex(row, center, center);
+    gap: 4em;
+    .card {
+      border-radius: 1em;
+      box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+      background-color: var(--secondary-color);
+      cursor: pointer;
+    }
+  }
+
+  .header {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
 
   button {
     margin: 1em;
@@ -27,8 +43,12 @@
   }
 
   .boardsContainer {
+    width: 100%;
+    height: 60%;
     padding: 2em;
-    background-color: var(--postit-four);
+    background-image: url("/assets/images/corkboard.jpg");
+    background-size: cover;
+    background-position: center;
     @include flex(column, center, center);
     gap: 1em;
   }
@@ -50,13 +70,23 @@
     @include flex(column, center, center);
   }
 
+  .white {
+    background-color: var(--postit-four);
+  }
   .blue {
     background-color: var(--postit-one);
   }
-  .yellow {
-    background-color: var(--postit-two);
-  }
-  .pink {
-    background-color: var(--postit-three);
-  }
+}
+
+.board-deletable {
+  border: 2px dashed crimson;
+  cursor: pointer;
+  transition: 0.2s;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.board-deletable:hover {
+  background-color: #ffeaea;
+  transform: scale(1.03);
 }

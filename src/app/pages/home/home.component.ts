@@ -7,7 +7,7 @@ import { BoardsService } from '../../shared/services/boards.service';
   selector: 'app-home',
   imports: [RouterLink],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
 export class HomeComponent {
   authService = inject(AuthService);
@@ -15,16 +15,20 @@ export class HomeComponent {
   boardService = inject(BoardsService);
   boards = this.boardService.boards;
 
+  active: 'create' | 'erase' | 'edit' | null = null;
+
   ngOnInit(): void {
     this.boardService.loadBoards();
   }
 
-  createBoard(title:string){
+  createBoard(title: string) {
     this.boardService.saveNewBoard(title);
   }
 
-  deleteBoard(board:string){
+  deleteBoard(board: string) {
     this.boardService.deleteBoard(board);
+    this.boards.update((boards) =>
+      boards.filter((content) => content.boardID !== board)
+    );
   }
-
 }

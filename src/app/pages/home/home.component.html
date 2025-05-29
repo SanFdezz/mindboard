@@ -1,28 +1,61 @@
 <div class="board">
-  <div>
-    <div class="title yellow postit">BienveniX a MindBoard {{ username }}</div>
-  </div>
-
-  <div class="postit blue">
-    <div>
-      <div class="title">¡CREA UN TABLERO!</div>
-      <div>Nombra el tablero:</div>
-      <input type="text" name="title" #boardTitle> <br>
-      <button (click)="createBoard(boardTitle.value)">Crear</button>
+  <div class="top-part">
+    <div class="header">
+      <div class="title">BienvenidX a MindBoard {{ username }}</div>
+      <div>Este es tu espacio personal, ¿Que deseas hacer hoy?</div>
+    </div>
+    <div class="cards">
+      <div class="card postit">
+        <div>
+          <div
+            class=""
+            (click)="active = active === 'create' ? null : 'create'"
+          >
+            CREA UN TABLERO
+          </div>
+          @if(active == 'create'){
+          <div>Nombra el tablero:</div>
+          <input type="text" name="title" #boardTitle /> <br />
+          <button (click)="createBoard(boardTitle.value)">Crear</button>
+          }
+        </div>
+      </div>
+      <div class="card postit">
+        <div>
+          <div class="" (click)="active = active === 'erase' ? null : 'erase'">
+            ELIMINA UN TABLERO
+          </div>
+          @if(active == 'erase'){
+          <div>Presiona encima del tablero a eliminar</div>
+          }
+        </div>
+      </div>
+      <div class="card postit">
+        <div>
+          <div class="" (click)="active = active === 'edit' ? null : 'edit'">
+            EDITA UN TABLERO
+          </div>
+          @if(active == 'edit'){
+          <div>Presiona encima del tablero a editar</div>
+          }
+        </div>
+      </div>
     </div>
   </div>
 
   <div class="boardsContainer">
-    <div class="title postit">
-      TUS TABLEROS
-    </div>
+    <div class="title postit white">TUS TABLEROS</div>
     <div class="boards">
       @for (board of boards(); track board.date) {
-        <div class="postit pink">
-          <div>Tablero '{{ board.title }}'</div>
-          <button [routerLink]="['/workspace/',board.boardID]">Personaliza tu tablero</button>
-        </div>
-        }
+      <div
+        class="postit blue"
+        [class.board-deletable]="active == 'erase'"
+        (click)="active == 'erase' ? deleteBoard(board.boardID!) : null"
+      >
+        <div>Tablero '{{ board.title }}'</div>
+        <button [routerLink]="['/workspace/', board.boardID]">Elegir</button>
+      </div>
+      }
     </div>
   </div>
 </div>

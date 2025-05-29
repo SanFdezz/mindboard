@@ -76,6 +76,7 @@ export class WorkspaceComponent implements OnInit {
   ngOnInit(): void {
     this.postitService.loadPostits(this.boardID);
     this.listService.loadLists(this.boardID);
+    this.stickerService.loadStickers(this.boardID);
   }
 
   delete(key: string, type: string): void {
