@@ -20,7 +20,7 @@
     ]
   },
   {
-    "name": "blue",
+    "name": "blues",
     "colors": [
       { "fill-hex": "#58CDED", "font-hex": "000000" },
       { "fill-hex": "#586EED", "font-hex": "000000" },
@@ -30,7 +30,7 @@
     ]
   },
   {
-    "name": "green",
+    "name": "greenish",
     "colors": [
       { "fill-hex": "#75ED58", "font-hex": "000000" },
       { "fill-hex": "#58EDA6", "font-hex": "000000" },
@@ -40,7 +40,7 @@
     ]
   },
     {
-    "name": "orange",
+    "name": "oranges",
     "colors": [
       { "fill-hex": "#EDBD58", "font-hex": "000000" },
       { "fill-hex": "#EDE158", "font-hex": "000000" },

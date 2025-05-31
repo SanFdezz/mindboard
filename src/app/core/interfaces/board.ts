@@ -1,6 +1,5 @@
-import { Postit } from "./content";
-import { List } from "./content";
-import { Calendar } from "./content";
+import { Postit, Sticker,List } from "./content";
+
 
 export interface Board {
   uid:string|undefined,
@@ -9,5 +8,5 @@ export interface Board {
   date:string|null,
   postits?: Postit[];
   lists?: List[];
-  calendars?: Calendar[];
+  stickers?: Sticker[];
 }
