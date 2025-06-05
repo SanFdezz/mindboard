@@ -12,6 +12,7 @@ import { Color } from '../../../core/interfaces/palette';
 export class ModalComponent {
   @Input() type!: string;
   @Input() colors: Color[] = [];
+  @Output() colorSeleccionado = new EventEmitter<Color>();
   @Output() close = new EventEmitter<void>();
   @Output() save = new EventEmitter<string[]>();
 

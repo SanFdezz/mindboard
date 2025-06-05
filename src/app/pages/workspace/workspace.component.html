@@ -79,6 +79,7 @@
         </div>
         @if(editMode==true){
         <button
+          class="btn"
           (click)="startEditing(element.key!, element.text, element.color)"
         >
           Editar
@@ -96,11 +97,16 @@
           />
           <div>Selecciona el color del post-it:</div>
           <select name="colors" id="colors" #colorSelect>
-            <option value="blue">Azul</option>
-            <option value="pink">Rosa</option>
-            <option value="yellow">Amarillo</option>
-            <option value="white">Blanco</option>
-            <option value="black">Negro</option>
+            @if (selectedPaletteColors != null) { @for (color of
+            selectedPaletteColors; track color.fillHex) {
+            <option
+              [value]="color['fillHex']"
+              [style.background]="color['fillHex']"
+              [style.color]="color['fontHex']"
+            >
+              {{ color["fillHex"] }}
+            </option>
+            } }
           </select>
           <br />
           <button
@@ -137,6 +143,7 @@
           </label>
           } @if(editMode==true){
           <button
+            class="btn"
             (click)="startEditing(element.key!, element.text, element.color)"
           >
             Editar
@@ -158,9 +165,16 @@
             <label>
               Selecciona el tipo de papel:
               <select name="colors" id="colors" #colorSelect>
-                <option value="white">Blanco</option>
-                <option value="black">Negro</option>
-                <option value="beige">Beige</option>
+                @if (selectedPaletteColors != null) { @for (color of
+                selectedPaletteColors; track color.fillHex) {
+                <option
+                  [value]="color['fillHex']"
+                  [style.background]="color['fillHex']"
+                  [style.color]="color['fontHex']"
+                >
+                  {{ color["fillHex"] }}
+                </option>
+                } }
               </select>
             </label>
             <button
