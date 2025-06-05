@@ -11,6 +11,7 @@ import {
   set,
 } from '@angular/fire/database';
 import { Postit } from '../../core/interfaces/content';
+import { update } from 'firebase/database';
 
 @Injectable({
   providedIn: 'root',
@@ -63,6 +64,31 @@ export class PostitService {
       this.elements.set([]);
     });
   }
+
+    editPostit(key: string, newText: string, color: string, board: string): void {
+      const updatedData = {
+        text: newText,
+        color: color,
+        date: new Date().toString(),
+      };
+
+      const boardRef = ref(this.db, `boards/${board}/postits/${key}`);
+      update(boardRef, updatedData);
+
+      this.elements.update((postits) =>
+        postits.map((p) => {
+          if (p.key === key) {
+            return {
+              ...p,
+              text: newText,
+              color: color,
+              date: new Date().toString(),
+            };
+          }
+          return p;
+        })
+      );
+    }
 
   deletePostit(board: string, postit: string): void {
     remove(ref(this.db, `boards/${board}/postits/${postit}`));

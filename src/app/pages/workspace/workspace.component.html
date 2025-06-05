@@ -68,6 +68,41 @@
         <div class="text">
           {{ element.text }}
         </div>
+        @if(editMode==true){
+        <button
+          (click)="startEditing(element.key!, element.text, element.color)"
+        >
+          Editar
+        </button>
+        @if(editingElementKey === element.key){
+        <div class="edit">
+          <div class="title">Edita el postit</div>
+          <div>
+            ¿Te has equivocado? No te preocupes, cambia los datos que desees
+          </div>
+          <input #inputTexto type="text" placeholder="Escribe lo que desees..." />
+          <div>Selecciona el color del post-it:</div>
+          <select name="colors" id="colors" #colorSelect>
+            <option value="blue">Azul</option>
+            <option value="pink">Rosa</option>
+            <option value="yellow">Amarillo</option>
+            <option value="white">Blanco</option>
+            <option value="black">Negro</option>
+          </select>
+          <br>
+          <button
+            (click)="
+              editELement(
+                [inputTexto.value, colorSelect.value],
+                element.key!,
+                'postit'
+              )
+            "
+          >
+            Guardar
+          </button>
+        </div>
+        } }
       </div>
     </div>
     } @for (element of lists(); track element.date) {
@@ -116,7 +151,17 @@
                 <option value="beige">Beige</option>
               </select>
             </label>
-            <button (click)="editELement([inputTexto.value,colorSelect.value],element.key!,'list')">Guardar</button>
+            <button
+              (click)="
+                editELement(
+                  [inputTexto.value, colorSelect.value],
+                  element.key!,
+                  'list'
+                )
+              "
+            >
+              Guardar
+            </button>
           </div>
           } }
         </div>

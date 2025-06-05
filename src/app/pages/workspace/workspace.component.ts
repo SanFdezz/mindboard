@@ -49,9 +49,9 @@ export class WorkspaceComponent implements OnInit {
   deleteMode: boolean = false;
   editMode: boolean = false;
 
-  editingElementKey:string = '';
-  elementText:string|string[] = '';
-  elementColor:string= '';
+  editingElementKey: string = '';
+  elementText: string | string[] = '';
+  elementColor: string = '';
 
   openModal(type: string) {
     this.showModal = type;
@@ -117,13 +117,10 @@ export class WorkspaceComponent implements OnInit {
     this.closeModal();
     switch (type) {
       case 'postit':
-        // this.postitService.editPostit(this.boardID, key);
+        this.postitService.editPostit(key, data[0], data[1], this.boardID);
         break;
       case 'list':
         this.listService.editList(key, textList, data[1], this.boardID);
-        break;
-      case 'sticker':
-        // this.stickerService.editSticker(this.boardID, key);
         break;
     }
   }
