@@ -24,8 +24,20 @@ export const routes: Routes = [
   {
     path: 'workspace/:id',
     loadComponent: () =>
-      import('./pages/workspace/workspace.component').then((m) => m.WorkspaceComponent),
-    ...canActivate(redirectUnauthorizedToStart)
+      import('./pages/workspace/workspace.component').then(
+        (m) => m.WorkspaceComponent
+      ),
+    ...canActivate(redirectUnauthorizedToStart),
+  },
+  {
+    path: 'terms',
+    loadComponent: () =>
+      import('./pages/terms/terms.component').then((m) => m.TermsComponent),
+  },
+  {
+    path: 'contact',
+    loadComponent: () =>
+      import('./pages/contact/contact.component').then((m) => m.ContactComponent),
   },
   {
     path: '',

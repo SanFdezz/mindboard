@@ -1,0 +1,33 @@
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cal+Sans&display=swap");
+
+@mixin flex($type, $content, $items) {
+  display: flex;
+  flex-direction: $type;
+  justify-content: $content;
+  align-items: $items;
+  text-align: center;
+}
+
+.page {
+  @include flex(row, center, center);
+  margin: 1em;
+  .box {
+    @include flex(column, center, center);
+    text-align: start;
+    border: solid rgb(89, 68, 50) 1em;
+    background-image: url("/assets/images/corkboard.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 5em;
+    width: 75%;
+
+    .bg{
+      padding: 1em;
+      background-color: var(--postit-four);
+
+      h2{
+        color: var(--title-color);
+      }
+    }
+  }
+}

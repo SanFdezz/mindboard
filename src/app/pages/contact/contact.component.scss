@@ -1,0 +1,89 @@
+@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Cal+Sans&display=swap");
+
+@mixin flex($type, $content, $items) {
+  display: flex;
+  flex-direction: $type;
+  justify-content: $content;
+  align-items: $items;
+  text-align: center;
+}
+
+.page {
+  @include flex(row, center, center);
+  margin: 1em;
+  .box {
+    @include flex(column, center, center);
+    text-align: start;
+    border: solid rgb(89, 68, 50) 1em;
+    background-image: url("/assets/images/corkboard.jpg");
+    background-size: cover;
+    background-position: center;
+    padding: 5em;
+    width: 75%;
+
+    .bg{
+      padding: 1em;
+      background-color: var(--postit-four);
+
+      h2{
+        color: var(--title-color);
+      }
+    }
+  }
+}
+
+
+form {
+  max-width: 600px;
+  padding: 1em;
+  border-radius: 8px;
+  background-color: var(--primary-color);
+  color: white;
+}
+
+form div {
+  margin-bottom: 1rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px black;
+}
+
+
+button {
+  margin: 0.5em;
+  padding: 1em;
+  border-radius: 1em;
+  border: none;
+  background-color: var(--secondary-color);
+  color: rgb(40, 38, 39);
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  &:hover{
+    background-color: var(--secondary-color-hover);
+    cursor: pointer;
+  }
+}
