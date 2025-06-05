@@ -7,6 +7,9 @@
       <button (click)="deleteMode = !deleteMode" class="btn">
         {{ deleteMode ? "Cancelar" : "Eliminar elementos" }}
       </button>
+      <button (click)="editMode = !editMode" class="btn">
+        {{ editMode ? "Cancelar" : "Editar elementos" }}
+      </button>
     </div>
     <button [routerLink]="['/home']" class="btn">Volver a Home</button>
   </div>
@@ -23,6 +26,8 @@
     </c-offcanvas-header>
     <c-offcanvas-body>
       <button (click)="openModal('postit')" class="btn">Post-its</button>
+      <button (click)="openModal('list')" class="btn">Listas</button>
+      <button (click)="openModal('sticker')" class="btn">Stickers</button>
       @if (showModal === 'postit') {
       <app-modal
         [type]="'postit'"
@@ -30,18 +35,14 @@
         (save)="createElement($event, 'postit')"
       >
       </app-modal>
-      }
-      <button (click)="openModal('list')" class="btn">Listas</button>
-      @if (showModal === 'list') {
+      } @if (showModal === 'list') {
       <app-modal
         [type]="'list'"
         (close)="closeModal()"
         (save)="createElement($event, 'list')"
       >
       </app-modal>
-      }
-      <button (click)="openModal('sticker')" class="btn">Stickers</button>
-      @if (showModal === 'sticker') {
+      } @if (showModal === 'sticker') {
       <app-modal
         [type]="'sticker'"
         (close)="closeModal()"
@@ -77,6 +78,7 @@
       cdkDrag
       cdkDragBoundary=".board"
       [class.sticker-deletable]="deleteMode"
+      [class.board-editable]="editMode"
       (click)="deleteMode ? delete(element.key!, element.type) : null"
     >
       <div class="content">
@@ -86,7 +88,37 @@
             <input type="checkbox" />
             {{ text }}
           </label>
-          }
+          } @if(editMode==true){
+          <button
+            (click)="startEditing(element.key!, element.text, element.color)"
+          >
+            Editar
+          </button>
+          @if(editingElementKey === element.key){
+          <div class="edit">
+            <div class="title">Edita la lista</div>
+            <div>
+              ¿Te has equivocado? No te preocupes, cambia los datos que desees
+            </div>
+            <div>
+              ¡Recuerda! Cada salto de línea es un nuevo check, tenlo en cuenta.
+            </div>
+            <textarea
+              #inputTexto
+              type="text"
+              placeholder="¡Rellena tu lista!"
+            ></textarea>
+            <label>
+              Selecciona el tipo de papel:
+              <select name="colors" id="colors" #colorSelect>
+                <option value="white">Blanco</option>
+                <option value="black">Negro</option>
+                <option value="beige">Beige</option>
+              </select>
+            </label>
+            <button (click)="editELement([inputTexto.value,colorSelect.value],element.key!,'list')">Guardar</button>
+          </div>
+          } }
         </div>
       </div>
     </div>

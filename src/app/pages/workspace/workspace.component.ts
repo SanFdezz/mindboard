@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CdkDrag } from '@angular/cdk/drag-drop';
 import { PostitService } from '../../shared/services/postit.service';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CalendarComponent } from '../../shared/components/calendar/calendar.component';
 import { ButtonModule } from '@coreui/angular';
 import {
   ButtonCloseDirective,
@@ -47,7 +46,12 @@ export class WorkspaceComponent implements OnInit {
   route = inject(ActivatedRoute);
   boardID = this.route.snapshot.paramMap.get('id')!;
 
-  deleteMode:boolean = false;
+  deleteMode: boolean = false;
+  editMode: boolean = false;
+
+  editingElementKey:string = '';
+  elementText:string|string[] = '';
+  elementColor:string= '';
 
   openModal(type: string) {
     this.showModal = type;
@@ -100,5 +104,27 @@ export class WorkspaceComponent implements OnInit {
     this.stickers.update((elements) =>
       elements.filter((content) => content.key !== key)
     );
+  }
+
+  startEditing(key: string, text: string | string[], color: string) {
+    this.editingElementKey = key;
+    this.elementText = text;
+    this.elementColor = color;
+  }
+
+  editELement(data: string[], key: string, type: string): void {
+    const textList = data[0].split('\n').filter((line) => line.trim() !== '');
+    this.closeModal();
+    switch (type) {
+      case 'postit':
+        // this.postitService.editPostit(this.boardID, key);
+        break;
+      case 'list':
+        this.listService.editList(key, textList, data[1], this.boardID);
+        break;
+      case 'sticker':
+        // this.stickerService.editSticker(this.boardID, key);
+        break;
+    }
   }
 }

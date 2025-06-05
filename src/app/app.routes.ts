@@ -5,7 +5,6 @@ import {
 } from '@angular/fire/auth-guard';
 import { Routes } from '@angular/router';
 
-// guards de firebase
 const redirectUnauthorizedToStart = () => redirectUnauthorizedTo(['start']);
 const redirectLoggedToHome = () => redirectLoggedInTo(['home']);
 

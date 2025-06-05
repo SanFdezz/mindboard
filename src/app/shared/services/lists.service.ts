@@ -11,11 +11,11 @@ import {
   set,
 } from '@angular/fire/database';
 import { List } from '../../core/interfaces/content';
+import { update } from 'firebase/database';
 
 @Injectable({
   providedIn: 'root',
 })
-
 export class ListsService {
   auth = getAuth();
   currentUser = this.auth.currentUser;
@@ -63,6 +63,31 @@ export class ListsService {
       }
       this.elements.set([]);
     });
+  }
+
+  editList(key: string, newText: string[], color: string, board: string): void {
+    const updatedData = {
+      text: newText,
+      color: color,
+      date: new Date().toString(),
+    };
+
+    const boardRef = ref(this.db, `boards/${board}/lists/${key}`);
+    update(boardRef, updatedData);
+
+    this.elements.update((lists) =>
+      lists.map((l) => {
+        if (l.key === key) {
+          return {
+            ...l,
+            text: newText,
+            color: color,
+            date: new Date().toString(),
+          };
+        }
+        return l;
+      })
+    );
   }
 
   deleteList(board: string, list: string): void {

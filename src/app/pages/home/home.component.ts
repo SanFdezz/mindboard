@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 import { RouterLink } from '@angular/router';
 import { BoardsService } from '../../shared/services/boards.service';
+import { Board } from '../../core/interfaces/board';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ export class HomeComponent {
   username = this.authService.getStoredUsername();
   boardService = inject(BoardsService);
   boards = this.boardService.boards;
-
+  editingBoardID = '';
+  boardTitle = '';
   active: 'create' | 'erase' | 'edit' | null = null;
 
   ngOnInit(): void {
@@ -30,5 +32,14 @@ export class HomeComponent {
     this.boards.update((boards) =>
       boards.filter((content) => content.boardID !== board)
     );
+  }
+
+  startEditing(boardID: string, title: string) {
+  this.editingBoardID = boardID;
+  this.boardTitle = title;
+}
+
+  editBoard(board: string,title:string) {
+    this.boardService.editBoard(board,title);
   }
 }

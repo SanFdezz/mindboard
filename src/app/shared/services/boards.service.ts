@@ -11,6 +11,7 @@ import {
   set,
 } from '@angular/fire/database';
 import { Board } from '../../core/interfaces/board';
+import { update } from 'firebase/database';
 
 @Injectable({
   providedIn: 'root',
@@ -55,6 +56,25 @@ export class BoardsService {
       }
       this.boards.set([]);
     });
+  }
+
+  editBoard(boardID: string, newTitle: string): void {
+    const updatedData = {
+      title: newTitle,
+      date: new Date().toString(),
+    };
+
+    const boardRef = ref(this.db, `boards/${boardID}`);
+    update(boardRef, updatedData);
+
+    this.boards.update((boards) =>
+      boards.map((b) => {
+        if (b.boardID === boardID) {
+          return { ...b, title: newTitle, date: new Date().toString() };
+        }
+        return b;
+      })
+    );
   }
 
   deleteBoard(board: string): void {

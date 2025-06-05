@@ -50,10 +50,19 @@
       <div
         class="postit blue"
         [class.board-deletable]="active == 'erase'"
+        [class.board-editable]="active == 'edit'"
         (click)="active == 'erase' ? deleteBoard(board.boardID!) : null"
       >
         <div>Tablero '{{ board.title }}'</div>
+        @if(active == 'edit'){
+        <button (click)="startEditing(board.boardID!, board.title)">Editar</button>
+        @if (editingBoardID === board.boardID) {
+          <div>Edita el título del tablero:</div>
+          <input type="text" name="title" #newBoardTitle /> <br />
+          <button (click)="editBoard(board.boardID!, newBoardTitle.value)">Guardar</button>
+        } } @else {
         <button [routerLink]="['/workspace/', board.boardID]">Elegir</button>
+        }
       </div>
       }
     </div>

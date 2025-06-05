@@ -12,8 +12,7 @@ import { User } from 'firebase/auth';
 export class AuthService {
   auth = inject(Auth);
   user = signal<User | null>(null);
-  // esta línea es para poder registrar y/o iniciar sesión con un nuevo usuario gracias a una cuenta de google
-  // cambiar lo de firebase
+
   login() {
     signInWithPopup(this.auth, new GoogleAuthProvider())
       .then((result) => {
