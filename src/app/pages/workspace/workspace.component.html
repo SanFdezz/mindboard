@@ -10,6 +10,14 @@
       <button (click)="editMode = !editMode" class="btn">
         {{ editMode ? "Cancelar" : "Editar elementos" }}
       </button>
+      <select name="pallete" class="btn" (change)="onPaletteChange($event)">
+        <option value="default">Default</option>
+        <option value="warm">Warm</option>
+        <option value="cool">Cool</option>
+        <option value="blues">Blues</option>
+        <option value="greenish">Greenish</option>
+        <option value="oranges">Oranges</option>
+      </select>
     </div>
     <button [routerLink]="['/home']" class="btn">Volver a Home</button>
   </div>
@@ -31,6 +39,7 @@
       @if (showModal === 'postit') {
       <app-modal
         [type]="'postit'"
+        [colors]="selectedPaletteColors"
         (close)="closeModal()"
         (save)="createElement($event, 'postit')"
       >
@@ -38,6 +47,7 @@
       } @if (showModal === 'list') {
       <app-modal
         [type]="'list'"
+        [colors]="selectedPaletteColors"
         (close)="closeModal()"
         (save)="createElement($event, 'list')"
       >
@@ -56,11 +66,10 @@
   <div class="board">
     @for (element of postits(); track element.date) {
     <div
-      class="arrastrable paper-content arrastrable-transition {{
-        element.color
-      }}"
+      class="arrastrable paper-content arrastrable-transition opacity"
       cdkDrag
       cdkDragBoundary=".board"
+      [style.background-color]="element.color"
       [class.sticker-deletable]="deleteMode"
       (click)="deleteMode ? delete(element.key!, element.type) : null"
     >
@@ -80,7 +89,11 @@
           <div>
             ¿Te has equivocado? No te preocupes, cambia los datos que desees
           </div>
-          <input #inputTexto type="text" placeholder="Escribe lo que desees..." />
+          <input
+            #inputTexto
+            type="text"
+            placeholder="Escribe lo que desees..."
+          />
           <div>Selecciona el color del post-it:</div>
           <select name="colors" id="colors" #colorSelect>
             <option value="blue">Azul</option>
@@ -89,7 +102,7 @@
             <option value="white">Blanco</option>
             <option value="black">Negro</option>
           </select>
-          <br>
+          <br />
           <button
             (click)="
               editELement(
@@ -107,11 +120,10 @@
     </div>
     } @for (element of lists(); track element.date) {
     <div
-      class="arrastrable paper-content arrastrable-transition {{
-        element.color
-      }}"
+      class="arrastrable paper-content arrastrable-transition opacity"
       cdkDrag
       cdkDragBoundary=".board"
+      [style.background-color]="element.color"
       [class.sticker-deletable]="deleteMode"
       [class.board-editable]="editMode"
       (click)="deleteMode ? delete(element.key!, element.type) : null"

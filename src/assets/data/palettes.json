@@ -1,52 +1,63 @@
 [
   {
+    "name": "default",
+    "colors": [
+      { "fillHex": "#52DFD9", "fontHex": "000000" },
+      { "fillHex": "#D1DF52", "fontHex": "000000" },
+      { "fillHex": "#DF52CF", "fontHex": "000000" },
+      { "fillHex": "#F5EEF4", "fontHex": "000000" },
+      { "fillHex": "#242324", "fontHex": "FFFFFF" }
+    ]
+  },
+
+  {
     "name": "warm",
     "colors": [
-      { "fill-hex": "#ED5B58", "font-hex": "000000" },
-      { "fill-hex": "#ED9058", "font-hex": "000000" },
-      { "fill-hex": "#ED7658", "font-hex": "000000" },
-      { "fill-hex": "#ED58A5", "font-hex": "000000" },
-      { "fill-hex": "#EDAA58", "font-hex": "000000" }
+      { "fillHex": "#ED5B58", "fontHex": "000000" },
+      { "fillHex": "#ED9058", "fontHex": "000000" },
+      { "fillHex": "#ED7658", "fontHex": "000000" },
+      { "fillHex": "#ED58A5", "fontHex": "000000" },
+      { "fillHex": "#EDAA58", "fontHex": "000000" }
     ]
   },
   {
     "name": "cool",
     "colors": [
-      { "fill-hex": "#6F58ED", "font-hex": "FFFFFF" },
-      { "fill-hex": "#D158ED", "font-hex": "000000" },
-      { "fill-hex": "#A058ED", "font-hex": "000000" },
-      { "fill-hex": "#5870ED", "font-hex": "000000" },
-      { "fill-hex": "#ED58C7", "font-hex": "000000" }
+      { "fillHex": "#6F58ED", "fontHex": "FFFFFF" },
+      { "fillHex": "#D158ED", "fontHex": "000000" },
+      { "fillHex": "#A058ED", "fontHex": "000000" },
+      { "fillHex": "#5870ED", "fontHex": "000000" },
+      { "fillHex": "#ED58C7", "fontHex": "000000" }
     ]
   },
   {
     "name": "blues",
     "colors": [
-      { "fill-hex": "#58CDED", "font-hex": "000000" },
-      { "fill-hex": "#586EED", "font-hex": "000000" },
-      { "fill-hex": "#589DED", "font-hex": "000000" },
-      { "fill-hex": "#58EDDD", "font-hex": "000000" },
-      { "fill-hex": "#7158ED", "font-hex": "FFFFFF" }
+      { "fillHex": "#58CDED", "fontHex": "000000" },
+      { "fillHex": "#586EED", "fontHex": "000000" },
+      { "fillHex": "#589DED", "fontHex": "000000" },
+      { "fillHex": "#58EDDD", "fontHex": "000000" },
+      { "fillHex": "#7158ED", "fontHex": "FFFFFF" }
     ]
   },
   {
     "name": "greenish",
     "colors": [
-      { "fill-hex": "#75ED58", "font-hex": "000000" },
-      { "fill-hex": "#58EDA6", "font-hex": "000000" },
-      { "fill-hex": "#58ED73", "font-hex": "000000" },
-      { "fill-hex": "#B3ED58", "font-hex": "000000" },
-      { "fill-hex": "#58EDD9", "font-hex": "000000" }
+      { "fillHex": "#75ED58", "fontHex": "000000" },
+      { "fillHex": "#58EDA6", "fontHex": "000000" },
+      { "fillHex": "#58ED73", "fontHex": "000000" },
+      { "fillHex": "#B3ED58", "fontHex": "000000" },
+      { "fillHex": "#58EDD9", "fontHex": "000000" }
     ]
   },
     {
     "name": "oranges",
     "colors": [
-      { "fill-hex": "#EDBD58", "font-hex": "000000" },
-      { "fill-hex": "#EDE158", "font-hex": "000000" },
-      { "fill-hex": "#EDCF58", "font-hex": "000000" },
-      { "fill-hex": "#EDA95B", "font-hex": "000000" },
-      { "fill-hex": "#D7ED58", "font-hex": "000000" }
+      { "fillHex": "#EDBD58", "fontHex": "000000" },
+      { "fillHex": "#EDE158", "fontHex": "000000" },
+      { "fillHex": "#EDCF58", "fontHex": "000000" },
+      { "fillHex": "#EDA95B", "fontHex": "000000" },
+      { "fillHex": "#D7ED58", "fontHex": "000000" }
     ]
   }
 ]

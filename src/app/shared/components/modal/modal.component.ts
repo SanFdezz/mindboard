@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Color } from '../../../core/interfaces/palette';
 
 @Component({
   selector: 'app-modal',
@@ -10,6 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class ModalComponent {
   @Input() type!: string;
+  @Input() colors: Color[] = [];
   @Output() close = new EventEmitter<void>();
   @Output() save = new EventEmitter<string[]>();
 

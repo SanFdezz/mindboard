@@ -23,28 +23,14 @@
   color: var(--title-color);
 }
 
+.opacity{
+  opacity: 80%;
+  color: white;
+}
+
 .postit {
   @include flex(column, center, center);
   padding: 1em;
-}
-
-.blue {
-  background-color: var(--postit-one);
-}
-.yellow {
-  background-color: var(--postit-two);
-}
-.pink {
-  background-color: var(--postit-three);
-}
-
-.white {
-  background-color: var(--postit-four);
-}
-
-.black {
-  background-color: var(--postit-five);
-  color: white;
 }
 
 .arrastrable {

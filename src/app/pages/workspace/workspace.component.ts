@@ -15,6 +15,8 @@ import {
 import { ModalComponent } from '../../shared/components/modal/modal.component';
 import { ListsService } from '../../shared/services/lists.service';
 import { StickersService } from '../../shared/services/stickers.service';
+import { Palette } from '../../core/interfaces/palette';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-workspace',
@@ -38,12 +40,14 @@ export class WorkspaceComponent implements OnInit {
   postitService = inject(PostitService);
   listService = inject(ListsService);
   stickerService = inject(StickersService);
+  http = inject(HttpClient);
+  route = inject(ActivatedRoute);
+
   counter = 0;
   showModal: string | null = null;
   postits = this.postitService.elements;
   lists = this.listService.elements;
   stickers = this.stickerService.elements;
-  route = inject(ActivatedRoute);
   boardID = this.route.snapshot.paramMap.get('id')!;
 
   deleteMode: boolean = false;
@@ -52,6 +56,10 @@ export class WorkspaceComponent implements OnInit {
   editingElementKey: string = '';
   elementText: string | string[] = '';
   elementColor: string = '';
+
+  palettes: Palette[] = [];
+  selectedPalette: Palette | null = null;
+  selectedPaletteColors: { 'fillHex': string; 'fontHex': string }[] = [];
 
   openModal(type: string) {
     this.showModal = type;
@@ -81,6 +89,9 @@ export class WorkspaceComponent implements OnInit {
     this.postitService.loadPostits(this.boardID);
     this.listService.loadLists(this.boardID);
     this.stickerService.loadStickers(this.boardID);
+    this.http.get<Palette[]>('assets/data/palettes.json').subscribe((data) => {
+      this.palettes = data;
+    });
   }
 
   delete(key: string, type: string): void {
@@ -124,4 +135,24 @@ export class WorkspaceComponent implements OnInit {
         break;
     }
   }
+
+  onPaletteChange(event: Event) {
+    const select = event.target as HTMLSelectElement;
+    const value = select.value;
+    console.log(value)
+
+    const selectedPalette = this.palettes.find(
+      (palette) => palette.name === value
+    );
+    if (selectedPalette) {
+      this.selectedPalette = selectedPalette;
+      this.selectedPaletteColors = selectedPalette.colors;
+    } else {
+      this.selectedPalette = null;
+      this.selectedPaletteColors = [];
+    }
+
+    //TODO: this.updateColors();
+  }
+
 }

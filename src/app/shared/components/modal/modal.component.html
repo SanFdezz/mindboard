@@ -6,11 +6,21 @@
     <label>
       Selecciona el color del post-it:
       <select name="colors" id="colors" #colorSelect>
+        @if (colors.length > 0) { @for (color of colors; track color.fillHex) {
+        <option
+          [value]="color['fillHex']"
+          [style.background]="color['fillHex']"
+          [style.color]="color['fontHex']"
+        >
+          {{ color["fillHex"] }}
+        </option>
+        } } @else {
         <option value="blue">Azul</option>
         <option value="pink">Rosa</option>
         <option value="yellow">Amarillo</option>
         <option value="white">Blanco</option>
         <option value="black">Negro</option>
+        }
       </select>
     </label>
     <button (click)="onGuardar(inputTexto.value, colorSelect.value)">
@@ -32,9 +42,21 @@
     <label>
       Selecciona el tipo de papel:
       <select name="colors" id="colors" #colorSelect>
-        <option value="white">Blanco</option>
-        <option value="black">Negro</option>
-        <option value="beige">Beige</option>
+        @if (colors.length > 0) { @for (color of colors; track color.fillHex) {
+        <option
+          [value]="color['fillHex']"
+          [style.background]="color['fillHex']"
+          [style.color]="color['fontHex']"
+        >
+          {{ color["fillHex"] }}
+        </option>
+        } } @else {
+        <option value="#52DFD9">Azul</option>
+        <option value="#D1DF52">Rosa</option>
+        <option value="#DF52CF">Amarillo</option>
+        <option value="#F5EEF4">Blanco</option>
+        <option value="#242324">Negro</option>
+        }
       </select>
     </label>
     <button (click)="onGuardar(inputTexto.value, colorSelect.value)">
@@ -48,8 +70,8 @@
     <div>Elige el sticker que desees agregar a tu tablero</div>
     <div class="select">
       @for (sticker of stickers; track $index) {
-      <div class="option" (click)="onGuardar(sticker.url,sticker.name)">
-        <img src="{{sticker.url}}" alt="{{sticker.name}}" class="sticker">
+      <div class="option" (click)="onGuardar(sticker.url, sticker.name)">
+        <img src="{{ sticker.url }}" alt="{{ sticker.name }}" class="sticker" />
       </div>
       }
     </div>
